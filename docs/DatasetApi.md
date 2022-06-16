@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**CreateDataset**](DatasetApi.md#CreateDataset) | **Post** /pool/dataset | 
 [**DeleteDataset**](DatasetApi.md#DeleteDataset) | **Delete** /pool/dataset/id/{id} | 
 [**GetDataset**](DatasetApi.md#GetDataset) | **Get** /pool/dataset/id/{id} | 
+[**ListDatasets**](DatasetApi.md#ListDatasets) | **Get** /pool/dataset | 
 [**UpdateDataset**](DatasetApi.md#UpdateDataset) | **Put** /pool/dataset/id/{id} | 
 
 
@@ -35,8 +36,8 @@ func main() {
     createDatasetParams := *openapiclient.NewCreateDatasetParams("Name_example") // CreateDatasetParams |  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DatasetApi.CreateDataset(context.Background()).CreateDatasetParams(createDatasetParams).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DatasetApi.CreateDataset(context.Background()).CreateDatasetParams(createDatasetParams).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DatasetApi.CreateDataset``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -101,8 +102,8 @@ func main() {
     id := "id_example" // string | 
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DatasetApi.DeleteDataset(context.Background(), id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DatasetApi.DeleteDataset(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DatasetApi.DeleteDataset``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -173,8 +174,8 @@ func main() {
     sort := "sort_example" // string |  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DatasetApi.GetDataset(context.Background(), id).Limit(limit).Offset(offset).Count(count).Sort(sort).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DatasetApi.GetDataset(context.Background(), id).Limit(limit).Offset(offset).Count(count).Sort(sort).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DatasetApi.GetDataset``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -223,6 +224,76 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## ListDatasets
+
+> []Dataset ListDatasets(ctx).Limit(limit).Offset(offset).Count(count).Sort(sort).Execute()
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    limit := int32(56) // int32 |  (optional)
+    offset := int32(56) // int32 |  (optional)
+    count := true // bool |  (optional)
+    sort := "sort_example" // string |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DatasetApi.ListDatasets(context.Background()).Limit(limit).Offset(offset).Count(count).Sort(sort).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DatasetApi.ListDatasets``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListDatasets`: []Dataset
+    fmt.Fprintf(os.Stdout, "Response from `DatasetApi.ListDatasets`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListDatasetsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **limit** | **int32** |  | 
+ **offset** | **int32** |  | 
+ **count** | **bool** |  | 
+ **sort** | **string** |  | 
+
+### Return type
+
+[**[]Dataset**](Dataset.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## UpdateDataset
 
 > Dataset UpdateDataset(ctx, id).UpdateDatasetParams(updateDatasetParams).Execute()
@@ -248,8 +319,8 @@ func main() {
     updateDatasetParams := *openapiclient.NewUpdateDatasetParams() // UpdateDatasetParams |  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DatasetApi.UpdateDataset(context.Background(), id).UpdateDatasetParams(updateDatasetParams).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DatasetApi.UpdateDataset(context.Background(), id).UpdateDatasetParams(updateDatasetParams).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DatasetApi.UpdateDataset``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
