@@ -4,8 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **int32** |  | [optional] 
-**Type** | Pointer to **string** |  | [optional] 
+**Id** | **int32** |  | 
+**Name** | **string** |  | 
+**Type** | **string** |  | 
 **Disk** | Pointer to **NullableString** |  | [optional] 
 **Serial** | Pointer to **NullableString** |  | [optional] 
 **Path** | Pointer to **NullableString** |  | [optional] 
@@ -24,7 +25,7 @@ Name | Type | Description | Notes
 
 ### NewISCSIExtent
 
-`func NewISCSIExtent() *ISCSIExtent`
+`func NewISCSIExtent(id int32, name string, type_ string, ) *ISCSIExtent`
 
 NewISCSIExtent instantiates a new ISCSIExtent object
 This constructor will assign default values to properties that have it defined,
@@ -39,30 +40,45 @@ NewISCSIExtentWithDefaults instantiates a new ISCSIExtent object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
+### GetId
+
+`func (o *ISCSIExtent) GetId() int32`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *ISCSIExtent) GetIdOk() (*int32, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetId
+
+`func (o *ISCSIExtent) SetId(v int32)`
+
+SetId sets Id field to given value.
+
+
 ### GetName
 
-`func (o *ISCSIExtent) GetName() int32`
+`func (o *ISCSIExtent) GetName() string`
 
 GetName returns the Name field if non-nil, zero value otherwise.
 
 ### GetNameOk
 
-`func (o *ISCSIExtent) GetNameOk() (*int32, bool)`
+`func (o *ISCSIExtent) GetNameOk() (*string, bool)`
 
 GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetName
 
-`func (o *ISCSIExtent) SetName(v int32)`
+`func (o *ISCSIExtent) SetName(v string)`
 
 SetName sets Name field to given value.
 
-### HasName
-
-`func (o *ISCSIExtent) HasName() bool`
-
-HasName returns a boolean if a field has been set.
 
 ### GetType
 
@@ -83,11 +99,6 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-### HasType
-
-`func (o *ISCSIExtent) HasType() bool`
-
-HasType returns a boolean if a field has been set.
 
 ### GetDisk
 

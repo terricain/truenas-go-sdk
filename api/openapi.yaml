@@ -761,13 +761,13 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ISCSIExtent'
+              $ref: '#/components/schemas/CreateISCSIExtentParams'
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CreateISCSIExtentParams'
+                $ref: '#/components/schemas/ISCSIExtent'
           description: A created iSCSI Extent
         "401":
           description: No authorization for this endpoint
@@ -979,6 +979,133 @@ paths:
           description: No authorization for this endpoint
       tags:
       - iscsi.initiator
+  /iscsi/targetextent:
+    get:
+      operationId: getISCSITargetExtents
+      parameters:
+      - explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: count
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - explode: true
+        in: query
+        name: sort
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          description: Operation succeeded
+        "401":
+          description: No authorization for this endpoint
+      tags:
+      - iscsi.targetextent
+    post:
+      description: |-
+        Create an Associated Target.
+
+        `lunid` will be automatically assigned if it is not provided based on the `target`.
+      operationId: createISCSITargetExtent
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateISCSITargetExtentParams'
+      responses:
+        "200":
+          description: Operation succeeded
+        "401":
+          description: No authorization for this endpoint
+      tags:
+      - iscsi.targetextent
+  /iscsi/targetextent/id/{id}:
+    delete:
+      description: Delete Associated Target of `id`.
+      operationId: deleteISCSITargetExtent
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeleteISCSITargetExtentParams'
+      responses:
+        "200":
+          description: Operation succeeded
+        "401":
+          description: No authorization for this endpoint
+      tags:
+      - iscsi.targetextent
+    get:
+      operationId: getISCSITargetExtent
+      parameters:
+      - explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: count
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - explode: true
+        in: query
+        name: sort
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "200":
+          description: Operation succeeded
+        "401":
+          description: No authorization for this endpoint
+      tags:
+      - iscsi.targetextent
   /network/configuration:
     get:
       operationId: getNetworkConfiguration
@@ -2230,12 +2357,15 @@ components:
         disk: disk
         serial: serial
         insecure_tpc: true
-        name: 0
+        name: name
         comment: comment
+        id: 0
         ro: true
       properties:
-        name:
+        id:
           type: integer
+        name:
+          type: string
         type:
           enum:
           - DISK
@@ -2278,6 +2408,10 @@ components:
           type: boolean
         enabled:
           type: boolean
+      required:
+      - id
+      - name
+      - type
       type: object
     CreateISCSIExtentParams:
       additionalProperties: false
@@ -2342,6 +2476,9 @@ components:
           type: boolean
         enabled:
           type: boolean
+      required:
+      - name
+      - type
       type: object
     DeleteISCSIExtentParams:
       additionalProperties: false
@@ -2390,6 +2527,26 @@ components:
           type: array
       type: object
     DeleteISCSITargetParams:
+      type: boolean
+    CreateISCSITargetExtentParams:
+      additionalProperties: false
+      example:
+        extent: 1
+        lunid: 6
+        target: 0
+      properties:
+        target:
+          type: integer
+        lunid:
+          nullable: true
+          type: integer
+        extent:
+          type: integer
+      required:
+      - extent
+      - target
+      type: object
+    DeleteISCSITargetExtentParams:
       type: boolean
     CreateUserParams:
       example:

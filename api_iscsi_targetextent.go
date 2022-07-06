@@ -20,179 +20,55 @@ import (
 )
 
 
-// IscsiExtentApiService IscsiExtentApi service
-type IscsiExtentApiService service
+// IscsiTargetextentApiService IscsiTargetextentApi service
+type IscsiTargetextentApiService service
 
-type ApiCreateISCSIExtentRequest struct {
+type ApiCreateISCSITargetExtentRequest struct {
 	ctx context.Context
-	ApiService *IscsiExtentApiService
-	createISCSIExtentParams *CreateISCSIExtentParams
+	ApiService *IscsiTargetextentApiService
+	createISCSITargetExtentParams *CreateISCSITargetExtentParams
 }
 
-func (r ApiCreateISCSIExtentRequest) CreateISCSIExtentParams(createISCSIExtentParams CreateISCSIExtentParams) ApiCreateISCSIExtentRequest {
-	r.createISCSIExtentParams = &createISCSIExtentParams
+func (r ApiCreateISCSITargetExtentRequest) CreateISCSITargetExtentParams(createISCSITargetExtentParams CreateISCSITargetExtentParams) ApiCreateISCSITargetExtentRequest {
+	r.createISCSITargetExtentParams = &createISCSITargetExtentParams
 	return r
 }
 
-func (r ApiCreateISCSIExtentRequest) Execute() (*ISCSIExtent, *http.Response, error) {
-	return r.ApiService.CreateISCSIExtentExecute(r)
+func (r ApiCreateISCSITargetExtentRequest) Execute() (*http.Response, error) {
+	return r.ApiService.CreateISCSITargetExtentExecute(r)
 }
 
 /*
-CreateISCSIExtent Method for CreateISCSIExtent
+CreateISCSITargetExtent Method for CreateISCSITargetExtent
 
-Create an iSCSI Extent.
+Create an Associated Target.
 
-When `type` is set to FILE, attribute `filesize` is used and it represents number of bytes. `filesize` if
-not zero should be a multiple of `blocksize`. `path` is a required attribute with `type` set as FILE and it
-should be ensured that it does not come under a jail root.
-
-With `type` being set to DISK, a valid ZVOL or DISK should be provided.
-
-`insecure_tpc` when enabled allows an initiator to bypass normal access control and access any scannable
-target. This allows xcopy operations otherwise blocked by access control.
-
-`xen` is a boolean value which is set to true if Xen is being used as the iSCSI initiator.
-
-`ro` when set to true prevents the initiator from writing to this LUN.
+`lunid` will be automatically assigned if it is not provided based on the `target`.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiCreateISCSIExtentRequest
+ @return ApiCreateISCSITargetExtentRequest
 */
-func (a *IscsiExtentApiService) CreateISCSIExtent(ctx context.Context) ApiCreateISCSIExtentRequest {
-	return ApiCreateISCSIExtentRequest{
+func (a *IscsiTargetextentApiService) CreateISCSITargetExtent(ctx context.Context) ApiCreateISCSITargetExtentRequest {
+	return ApiCreateISCSITargetExtentRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//  @return ISCSIExtent
-func (a *IscsiExtentApiService) CreateISCSIExtentExecute(r ApiCreateISCSIExtentRequest) (*ISCSIExtent, *http.Response, error) {
+func (a *IscsiTargetextentApiService) CreateISCSITargetExtentExecute(r ApiCreateISCSITargetExtentRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ISCSIExtent
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IscsiExtentApiService.CreateISCSIExtent")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/iscsi/extent"
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.createISCSIExtentParams
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiDeleteISCSIExtentRequest struct {
-	ctx context.Context
-	ApiService *IscsiExtentApiService
-	id int32
-	deleteISCSIExtentParams *DeleteISCSIExtentParams
-}
-
-func (r ApiDeleteISCSIExtentRequest) DeleteISCSIExtentParams(deleteISCSIExtentParams DeleteISCSIExtentParams) ApiDeleteISCSIExtentRequest {
-	r.deleteISCSIExtentParams = &deleteISCSIExtentParams
-	return r
-}
-
-func (r ApiDeleteISCSIExtentRequest) Execute() (*http.Response, error) {
-	return r.ApiService.DeleteISCSIExtentExecute(r)
-}
-
-/*
-DeleteISCSIExtent Method for DeleteISCSIExtent
-
-Delete iSCSI Extent of `id`.
-
-If `id` iSCSI Extent's `type` was configured to FILE, `remove` can be set to remove the configured file.
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id
- @return ApiDeleteISCSIExtentRequest
-*/
-func (a *IscsiExtentApiService) DeleteISCSIExtent(ctx context.Context, id int32) ApiDeleteISCSIExtentRequest {
-	return ApiDeleteISCSIExtentRequest{
-		ApiService: a,
-		ctx: ctx,
-		id: id,
-	}
-}
-
-// Execute executes the request
-func (a *IscsiExtentApiService) DeleteISCSIExtentExecute(r ApiDeleteISCSIExtentRequest) (*http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IscsiExtentApiService.DeleteISCSIExtent")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IscsiTargetextentApiService.CreateISCSITargetExtent")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/iscsi/extent/id/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath := localBasePath + "/iscsi/targetextent"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -216,7 +92,7 @@ func (a *IscsiExtentApiService) DeleteISCSIExtentExecute(r ApiDeleteISCSIExtentR
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.deleteISCSIExtentParams
+	localVarPostBody = r.createISCSITargetExtentParams
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
@@ -245,49 +121,33 @@ func (a *IscsiExtentApiService) DeleteISCSIExtentExecute(r ApiDeleteISCSIExtentR
 	return localVarHTTPResponse, nil
 }
 
-type ApiGetISCSIExtentRequest struct {
+type ApiDeleteISCSITargetExtentRequest struct {
 	ctx context.Context
-	ApiService *IscsiExtentApiService
+	ApiService *IscsiTargetextentApiService
 	id int32
-	limit *int32
-	offset *int32
-	count *bool
-	sort *string
+	body *bool
 }
 
-func (r ApiGetISCSIExtentRequest) Limit(limit int32) ApiGetISCSIExtentRequest {
-	r.limit = &limit
+func (r ApiDeleteISCSITargetExtentRequest) Body(body bool) ApiDeleteISCSITargetExtentRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiGetISCSIExtentRequest) Offset(offset int32) ApiGetISCSIExtentRequest {
-	r.offset = &offset
-	return r
-}
-
-func (r ApiGetISCSIExtentRequest) Count(count bool) ApiGetISCSIExtentRequest {
-	r.count = &count
-	return r
-}
-
-func (r ApiGetISCSIExtentRequest) Sort(sort string) ApiGetISCSIExtentRequest {
-	r.sort = &sort
-	return r
-}
-
-func (r ApiGetISCSIExtentRequest) Execute() (*ISCSIExtent, *http.Response, error) {
-	return r.ApiService.GetISCSIExtentExecute(r)
+func (r ApiDeleteISCSITargetExtentRequest) Execute() (*http.Response, error) {
+	return r.ApiService.DeleteISCSITargetExtentExecute(r)
 }
 
 /*
-GetISCSIExtent Method for GetISCSIExtent
+DeleteISCSITargetExtent Method for DeleteISCSITargetExtent
+
+Delete Associated Target of `id`.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id
- @return ApiGetISCSIExtentRequest
+ @return ApiDeleteISCSITargetExtentRequest
 */
-func (a *IscsiExtentApiService) GetISCSIExtent(ctx context.Context, id int32) ApiGetISCSIExtentRequest {
-	return ApiGetISCSIExtentRequest{
+func (a *IscsiTargetextentApiService) DeleteISCSITargetExtent(ctx context.Context, id int32) ApiDeleteISCSITargetExtentRequest {
+	return ApiDeleteISCSITargetExtentRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
@@ -295,21 +155,135 @@ func (a *IscsiExtentApiService) GetISCSIExtent(ctx context.Context, id int32) Ap
 }
 
 // Execute executes the request
-//  @return ISCSIExtent
-func (a *IscsiExtentApiService) GetISCSIExtentExecute(r ApiGetISCSIExtentRequest) (*ISCSIExtent, *http.Response, error) {
+func (a *IscsiTargetextentApiService) DeleteISCSITargetExtentExecute(r ApiDeleteISCSITargetExtentRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IscsiTargetextentApiService.DeleteISCSITargetExtent")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/iscsi/targetextent/id/{id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.body
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type ApiGetISCSITargetExtentRequest struct {
+	ctx context.Context
+	ApiService *IscsiTargetextentApiService
+	id int32
+	limit *int32
+	offset *int32
+	count *bool
+	sort *string
+}
+
+func (r ApiGetISCSITargetExtentRequest) Limit(limit int32) ApiGetISCSITargetExtentRequest {
+	r.limit = &limit
+	return r
+}
+
+func (r ApiGetISCSITargetExtentRequest) Offset(offset int32) ApiGetISCSITargetExtentRequest {
+	r.offset = &offset
+	return r
+}
+
+func (r ApiGetISCSITargetExtentRequest) Count(count bool) ApiGetISCSITargetExtentRequest {
+	r.count = &count
+	return r
+}
+
+func (r ApiGetISCSITargetExtentRequest) Sort(sort string) ApiGetISCSITargetExtentRequest {
+	r.sort = &sort
+	return r
+}
+
+func (r ApiGetISCSITargetExtentRequest) Execute() (*http.Response, error) {
+	return r.ApiService.GetISCSITargetExtentExecute(r)
+}
+
+/*
+GetISCSITargetExtent Method for GetISCSITargetExtent
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id
+ @return ApiGetISCSITargetExtentRequest
+*/
+func (a *IscsiTargetextentApiService) GetISCSITargetExtent(ctx context.Context, id int32) ApiGetISCSITargetExtentRequest {
+	return ApiGetISCSITargetExtentRequest{
+		ApiService: a,
+		ctx: ctx,
+		id: id,
+	}
+}
+
+// Execute executes the request
+func (a *IscsiTargetextentApiService) GetISCSITargetExtentExecute(r ApiGetISCSITargetExtentRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ISCSIExtent
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IscsiExtentApiService.GetISCSIExtent")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IscsiTargetextentApiService.GetISCSITargetExtent")
 	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/iscsi/extent/id/{id}"
+	localVarPath := localBasePath + "/iscsi/targetextent/id/{id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -338,7 +312,7 @@ func (a *IscsiExtentApiService) GetISCSIExtentExecute(r ApiGetISCSIExtentRequest
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -347,19 +321,19 @@ func (a *IscsiExtentApiService) GetISCSIExtentExecute(r ApiGetISCSIExtentRequest
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		return localVarReturnValue, nil, err
+		return nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
+		return localVarHTTPResponse, err
 	}
 
 	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
+		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -367,83 +341,72 @@ func (a *IscsiExtentApiService) GetISCSIExtentExecute(r ApiGetISCSIExtentRequest
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
+		return localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
+	return localVarHTTPResponse, nil
 }
 
-type ApiGetISCSIExtentsRequest struct {
+type ApiGetISCSITargetExtentsRequest struct {
 	ctx context.Context
-	ApiService *IscsiExtentApiService
+	ApiService *IscsiTargetextentApiService
 	limit *int32
 	offset *int32
 	count *bool
 	sort *string
 }
 
-func (r ApiGetISCSIExtentsRequest) Limit(limit int32) ApiGetISCSIExtentsRequest {
+func (r ApiGetISCSITargetExtentsRequest) Limit(limit int32) ApiGetISCSITargetExtentsRequest {
 	r.limit = &limit
 	return r
 }
 
-func (r ApiGetISCSIExtentsRequest) Offset(offset int32) ApiGetISCSIExtentsRequest {
+func (r ApiGetISCSITargetExtentsRequest) Offset(offset int32) ApiGetISCSITargetExtentsRequest {
 	r.offset = &offset
 	return r
 }
 
-func (r ApiGetISCSIExtentsRequest) Count(count bool) ApiGetISCSIExtentsRequest {
+func (r ApiGetISCSITargetExtentsRequest) Count(count bool) ApiGetISCSITargetExtentsRequest {
 	r.count = &count
 	return r
 }
 
-func (r ApiGetISCSIExtentsRequest) Sort(sort string) ApiGetISCSIExtentsRequest {
+func (r ApiGetISCSITargetExtentsRequest) Sort(sort string) ApiGetISCSITargetExtentsRequest {
 	r.sort = &sort
 	return r
 }
 
-func (r ApiGetISCSIExtentsRequest) Execute() ([]ISCSIExtent, *http.Response, error) {
-	return r.ApiService.GetISCSIExtentsExecute(r)
+func (r ApiGetISCSITargetExtentsRequest) Execute() (*http.Response, error) {
+	return r.ApiService.GetISCSITargetExtentsExecute(r)
 }
 
 /*
-GetISCSIExtents Method for GetISCSIExtents
+GetISCSITargetExtents Method for GetISCSITargetExtents
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiGetISCSIExtentsRequest
+ @return ApiGetISCSITargetExtentsRequest
 */
-func (a *IscsiExtentApiService) GetISCSIExtents(ctx context.Context) ApiGetISCSIExtentsRequest {
-	return ApiGetISCSIExtentsRequest{
+func (a *IscsiTargetextentApiService) GetISCSITargetExtents(ctx context.Context) ApiGetISCSITargetExtentsRequest {
+	return ApiGetISCSITargetExtentsRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//  @return []ISCSIExtent
-func (a *IscsiExtentApiService) GetISCSIExtentsExecute(r ApiGetISCSIExtentsRequest) ([]ISCSIExtent, *http.Response, error) {
+func (a *IscsiTargetextentApiService) GetISCSITargetExtentsExecute(r ApiGetISCSITargetExtentsRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []ISCSIExtent
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IscsiExtentApiService.GetISCSIExtents")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IscsiTargetextentApiService.GetISCSITargetExtents")
 	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/iscsi/extent"
+	localVarPath := localBasePath + "/iscsi/targetextent"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -471,7 +434,7 @@ func (a *IscsiExtentApiService) GetISCSIExtentsExecute(r ApiGetISCSIExtentsReque
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -480,19 +443,19 @@ func (a *IscsiExtentApiService) GetISCSIExtentsExecute(r ApiGetISCSIExtentsReque
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		return localVarReturnValue, nil, err
+		return nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
+		return localVarHTTPResponse, err
 	}
 
 	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
+		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -500,17 +463,8 @@ func (a *IscsiExtentApiService) GetISCSIExtentsExecute(r ApiGetISCSIExtentsReque
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
+		return localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
+	return localVarHTTPResponse, nil
 }
