@@ -366,7 +366,7 @@ func (a *IscsiInitiatorApiService) GetISCSIInitiatorExecute(r ApiGetISCSIInitiat
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiGetISCSIInitiatorsRequest struct {
+type ApiListISCSIInitiatorRequest struct {
 	ctx context.Context
 	ApiService *IscsiInitiatorApiService
 	limit *int32
@@ -375,38 +375,38 @@ type ApiGetISCSIInitiatorsRequest struct {
 	sort *string
 }
 
-func (r ApiGetISCSIInitiatorsRequest) Limit(limit int32) ApiGetISCSIInitiatorsRequest {
+func (r ApiListISCSIInitiatorRequest) Limit(limit int32) ApiListISCSIInitiatorRequest {
 	r.limit = &limit
 	return r
 }
 
-func (r ApiGetISCSIInitiatorsRequest) Offset(offset int32) ApiGetISCSIInitiatorsRequest {
+func (r ApiListISCSIInitiatorRequest) Offset(offset int32) ApiListISCSIInitiatorRequest {
 	r.offset = &offset
 	return r
 }
 
-func (r ApiGetISCSIInitiatorsRequest) Count(count bool) ApiGetISCSIInitiatorsRequest {
+func (r ApiListISCSIInitiatorRequest) Count(count bool) ApiListISCSIInitiatorRequest {
 	r.count = &count
 	return r
 }
 
-func (r ApiGetISCSIInitiatorsRequest) Sort(sort string) ApiGetISCSIInitiatorsRequest {
+func (r ApiListISCSIInitiatorRequest) Sort(sort string) ApiListISCSIInitiatorRequest {
 	r.sort = &sort
 	return r
 }
 
-func (r ApiGetISCSIInitiatorsRequest) Execute() ([]ISCSIInitiator, *http.Response, error) {
-	return r.ApiService.GetISCSIInitiatorsExecute(r)
+func (r ApiListISCSIInitiatorRequest) Execute() ([]ISCSIInitiator, *http.Response, error) {
+	return r.ApiService.ListISCSIInitiatorExecute(r)
 }
 
 /*
-GetISCSIInitiators Method for GetISCSIInitiators
+ListISCSIInitiator Method for ListISCSIInitiator
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiGetISCSIInitiatorsRequest
+ @return ApiListISCSIInitiatorRequest
 */
-func (a *IscsiInitiatorApiService) GetISCSIInitiators(ctx context.Context) ApiGetISCSIInitiatorsRequest {
-	return ApiGetISCSIInitiatorsRequest{
+func (a *IscsiInitiatorApiService) ListISCSIInitiator(ctx context.Context) ApiListISCSIInitiatorRequest {
+	return ApiListISCSIInitiatorRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -414,7 +414,7 @@ func (a *IscsiInitiatorApiService) GetISCSIInitiators(ctx context.Context) ApiGe
 
 // Execute executes the request
 //  @return []ISCSIInitiator
-func (a *IscsiInitiatorApiService) GetISCSIInitiatorsExecute(r ApiGetISCSIInitiatorsRequest) ([]ISCSIInitiator, *http.Response, error) {
+func (a *IscsiInitiatorApiService) ListISCSIInitiatorExecute(r ApiListISCSIInitiatorRequest) ([]ISCSIInitiator, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -422,7 +422,7 @@ func (a *IscsiInitiatorApiService) GetISCSIInitiatorsExecute(r ApiGetISCSIInitia
 		localVarReturnValue  []ISCSIInitiator
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IscsiInitiatorApiService.GetISCSIInitiators")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IscsiInitiatorApiService.ListISCSIInitiator")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

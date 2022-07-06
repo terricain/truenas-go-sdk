@@ -374,7 +374,7 @@ func (a *IscsiTargetApiService) GetISCSITargetExecute(r ApiGetISCSITargetRequest
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiGetISCSITargetsRequest struct {
+type ApiListISCSITargetRequest struct {
 	ctx context.Context
 	ApiService *IscsiTargetApiService
 	limit *int32
@@ -383,38 +383,38 @@ type ApiGetISCSITargetsRequest struct {
 	sort *string
 }
 
-func (r ApiGetISCSITargetsRequest) Limit(limit int32) ApiGetISCSITargetsRequest {
+func (r ApiListISCSITargetRequest) Limit(limit int32) ApiListISCSITargetRequest {
 	r.limit = &limit
 	return r
 }
 
-func (r ApiGetISCSITargetsRequest) Offset(offset int32) ApiGetISCSITargetsRequest {
+func (r ApiListISCSITargetRequest) Offset(offset int32) ApiListISCSITargetRequest {
 	r.offset = &offset
 	return r
 }
 
-func (r ApiGetISCSITargetsRequest) Count(count bool) ApiGetISCSITargetsRequest {
+func (r ApiListISCSITargetRequest) Count(count bool) ApiListISCSITargetRequest {
 	r.count = &count
 	return r
 }
 
-func (r ApiGetISCSITargetsRequest) Sort(sort string) ApiGetISCSITargetsRequest {
+func (r ApiListISCSITargetRequest) Sort(sort string) ApiListISCSITargetRequest {
 	r.sort = &sort
 	return r
 }
 
-func (r ApiGetISCSITargetsRequest) Execute() ([]ISCSITarget, *http.Response, error) {
-	return r.ApiService.GetISCSITargetsExecute(r)
+func (r ApiListISCSITargetRequest) Execute() ([]ISCSITarget, *http.Response, error) {
+	return r.ApiService.ListISCSITargetExecute(r)
 }
 
 /*
-GetISCSITargets Method for GetISCSITargets
+ListISCSITarget Method for ListISCSITarget
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiGetISCSITargetsRequest
+ @return ApiListISCSITargetRequest
 */
-func (a *IscsiTargetApiService) GetISCSITargets(ctx context.Context) ApiGetISCSITargetsRequest {
-	return ApiGetISCSITargetsRequest{
+func (a *IscsiTargetApiService) ListISCSITarget(ctx context.Context) ApiListISCSITargetRequest {
+	return ApiListISCSITargetRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -422,7 +422,7 @@ func (a *IscsiTargetApiService) GetISCSITargets(ctx context.Context) ApiGetISCSI
 
 // Execute executes the request
 //  @return []ISCSITarget
-func (a *IscsiTargetApiService) GetISCSITargetsExecute(r ApiGetISCSITargetsRequest) ([]ISCSITarget, *http.Response, error) {
+func (a *IscsiTargetApiService) ListISCSITargetExecute(r ApiListISCSITargetRequest) ([]ISCSITarget, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -430,7 +430,7 @@ func (a *IscsiTargetApiService) GetISCSITargetsExecute(r ApiGetISCSITargetsReque
 		localVarReturnValue  []ISCSITarget
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IscsiTargetApiService.GetISCSITargets")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IscsiTargetApiService.ListISCSITarget")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

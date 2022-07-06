@@ -382,7 +382,7 @@ func (a *IscsiExtentApiService) GetISCSIExtentExecute(r ApiGetISCSIExtentRequest
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiGetISCSIExtentsRequest struct {
+type ApiListISCSIExtentRequest struct {
 	ctx context.Context
 	ApiService *IscsiExtentApiService
 	limit *int32
@@ -391,38 +391,38 @@ type ApiGetISCSIExtentsRequest struct {
 	sort *string
 }
 
-func (r ApiGetISCSIExtentsRequest) Limit(limit int32) ApiGetISCSIExtentsRequest {
+func (r ApiListISCSIExtentRequest) Limit(limit int32) ApiListISCSIExtentRequest {
 	r.limit = &limit
 	return r
 }
 
-func (r ApiGetISCSIExtentsRequest) Offset(offset int32) ApiGetISCSIExtentsRequest {
+func (r ApiListISCSIExtentRequest) Offset(offset int32) ApiListISCSIExtentRequest {
 	r.offset = &offset
 	return r
 }
 
-func (r ApiGetISCSIExtentsRequest) Count(count bool) ApiGetISCSIExtentsRequest {
+func (r ApiListISCSIExtentRequest) Count(count bool) ApiListISCSIExtentRequest {
 	r.count = &count
 	return r
 }
 
-func (r ApiGetISCSIExtentsRequest) Sort(sort string) ApiGetISCSIExtentsRequest {
+func (r ApiListISCSIExtentRequest) Sort(sort string) ApiListISCSIExtentRequest {
 	r.sort = &sort
 	return r
 }
 
-func (r ApiGetISCSIExtentsRequest) Execute() ([]ISCSIExtent, *http.Response, error) {
-	return r.ApiService.GetISCSIExtentsExecute(r)
+func (r ApiListISCSIExtentRequest) Execute() ([]ISCSIExtent, *http.Response, error) {
+	return r.ApiService.ListISCSIExtentExecute(r)
 }
 
 /*
-GetISCSIExtents Method for GetISCSIExtents
+ListISCSIExtent Method for ListISCSIExtent
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiGetISCSIExtentsRequest
+ @return ApiListISCSIExtentRequest
 */
-func (a *IscsiExtentApiService) GetISCSIExtents(ctx context.Context) ApiGetISCSIExtentsRequest {
-	return ApiGetISCSIExtentsRequest{
+func (a *IscsiExtentApiService) ListISCSIExtent(ctx context.Context) ApiListISCSIExtentRequest {
+	return ApiListISCSIExtentRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -430,7 +430,7 @@ func (a *IscsiExtentApiService) GetISCSIExtents(ctx context.Context) ApiGetISCSI
 
 // Execute executes the request
 //  @return []ISCSIExtent
-func (a *IscsiExtentApiService) GetISCSIExtentsExecute(r ApiGetISCSIExtentsRequest) ([]ISCSIExtent, *http.Response, error) {
+func (a *IscsiExtentApiService) ListISCSIExtentExecute(r ApiListISCSIExtentRequest) ([]ISCSIExtent, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -438,7 +438,7 @@ func (a *IscsiExtentApiService) GetISCSIExtentsExecute(r ApiGetISCSIExtentsReque
 		localVarReturnValue  []ISCSIExtent
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IscsiExtentApiService.GetISCSIExtents")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IscsiExtentApiService.ListISCSIExtent")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

@@ -560,7 +560,7 @@ paths:
       - group
   /iscsi/target:
     get:
-      operationId: getISCSITargets
+      operationId: listISCSITarget
       parameters:
       - explode: true
         in: query
@@ -703,7 +703,7 @@ paths:
       - iscsi.target
   /iscsi/extent:
     get:
-      operationId: getISCSIExtents
+      operationId: listISCSIExtent
       parameters:
       - explode: true
         in: query
@@ -849,7 +849,7 @@ paths:
       - iscsi.extent
   /iscsi/initiator:
     get:
-      operationId: getISCSIInitiators
+      operationId: listISCSIInitiator
       parameters:
       - explode: true
         in: query
@@ -985,7 +985,7 @@ paths:
       - iscsi.initiator
   /iscsi/targetextent:
     get:
-      operationId: getISCSITargetExtents
+      operationId: listISCSITargetExtent
       parameters:
       - explode: true
         in: query
@@ -2550,6 +2550,8 @@ components:
           items:
             $ref: '#/components/schemas/CreateISCSITargetParams_groups_inner'
           type: array
+      required:
+      - name
       type: object
     DeleteISCSITargetParams:
       type: boolean

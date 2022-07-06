@@ -16,7 +16,7 @@ import (
 
 // CreateISCSITargetParams struct for CreateISCSITargetParams
 type CreateISCSITargetParams struct {
-	Name *string `json:"name,omitempty"`
+	Name string `json:"name"`
 	Alias NullableString `json:"alias,omitempty"`
 	Mode *string `json:"mode,omitempty"`
 	Groups []CreateISCSITargetParamsGroupsInner `json:"groups,omitempty"`
@@ -26,8 +26,9 @@ type CreateISCSITargetParams struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateISCSITargetParams() *CreateISCSITargetParams {
+func NewCreateISCSITargetParams(name string) *CreateISCSITargetParams {
 	this := CreateISCSITargetParams{}
+	this.Name = name
 	return &this
 }
 
@@ -39,36 +40,28 @@ func NewCreateISCSITargetParamsWithDefaults() *CreateISCSITargetParams {
 	return &this
 }
 
-// GetName returns the Name field value if set, zero value otherwise.
+// GetName returns the Name field value
 func (o *CreateISCSITargetParams) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Name
+
+	return o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 func (o *CreateISCSITargetParams) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Name, true
+	return &o.Name, true
 }
 
-// HasName returns a boolean if a field has been set.
-func (o *CreateISCSITargetParams) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetName gets a reference to the given string and assigns it to the Name field.
+// SetName sets field value
 func (o *CreateISCSITargetParams) SetName(v string) {
-	o.Name = &v
+	o.Name = v
 }
 
 // GetAlias returns the Alias field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -179,7 +172,7 @@ func (o *CreateISCSITargetParams) SetGroups(v []CreateISCSITargetParamsGroupsInn
 
 func (o CreateISCSITargetParams) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Name != nil {
+	if true {
 		toSerialize["name"] = o.Name
 	}
 	if o.Alias.IsSet() {

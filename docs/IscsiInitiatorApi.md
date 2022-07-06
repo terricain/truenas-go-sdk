@@ -7,7 +7,7 @@ Method | HTTP request | Description
 [**CreateISCSIInitiator**](IscsiInitiatorApi.md#CreateISCSIInitiator) | **Post** /iscsi/initiator | 
 [**DeleteISCSIInitiator**](IscsiInitiatorApi.md#DeleteISCSIInitiator) | **Delete** /iscsi/initiator/id/{id} | 
 [**GetISCSIInitiator**](IscsiInitiatorApi.md#GetISCSIInitiator) | **Get** /iscsi/initiator/id/{id} | 
-[**GetISCSIInitiators**](IscsiInitiatorApi.md#GetISCSIInitiators) | **Get** /iscsi/initiator | 
+[**ListISCSIInitiator**](IscsiInitiatorApi.md#ListISCSIInitiator) | **Get** /iscsi/initiator | 
 
 
 
@@ -221,9 +221,9 @@ No authorization required
 [[Back to README]](../README.md)
 
 
-## GetISCSIInitiators
+## ListISCSIInitiator
 
-> []ISCSIInitiator GetISCSIInitiators(ctx).Limit(limit).Offset(offset).Count(count).Sort(sort).Execute()
+> []ISCSIInitiator ListISCSIInitiator(ctx).Limit(limit).Offset(offset).Count(count).Sort(sort).Execute()
 
 
 
@@ -247,13 +247,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.IscsiInitiatorApi.GetISCSIInitiators(context.Background()).Limit(limit).Offset(offset).Count(count).Sort(sort).Execute()
+    resp, r, err := apiClient.IscsiInitiatorApi.ListISCSIInitiator(context.Background()).Limit(limit).Offset(offset).Count(count).Sort(sort).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `IscsiInitiatorApi.GetISCSIInitiators``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `IscsiInitiatorApi.ListISCSIInitiator``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetISCSIInitiators`: []ISCSIInitiator
-    fmt.Fprintf(os.Stdout, "Response from `IscsiInitiatorApi.GetISCSIInitiators`: %v\n", resp)
+    // response from `ListISCSIInitiator`: []ISCSIInitiator
+    fmt.Fprintf(os.Stdout, "Response from `IscsiInitiatorApi.ListISCSIInitiator`: %v\n", resp)
 }
 ```
 
@@ -263,7 +263,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetISCSIInitiatorsRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiListISCSIInitiatorRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes

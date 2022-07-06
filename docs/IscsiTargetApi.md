@@ -7,7 +7,7 @@ Method | HTTP request | Description
 [**CreateISCSITarget**](IscsiTargetApi.md#CreateISCSITarget) | **Post** /iscsi/target | 
 [**DeleteISCSITarget**](IscsiTargetApi.md#DeleteISCSITarget) | **Delete** /iscsi/target/id/{id} | 
 [**GetISCSITarget**](IscsiTargetApi.md#GetISCSITarget) | **Get** /iscsi/target/id/{id} | 
-[**GetISCSITargets**](IscsiTargetApi.md#GetISCSITargets) | **Get** /iscsi/target | 
+[**ListISCSITarget**](IscsiTargetApi.md#ListISCSITarget) | **Get** /iscsi/target | 
 
 
 
@@ -32,7 +32,7 @@ import (
 )
 
 func main() {
-    createISCSITargetParams := *openapiclient.NewCreateISCSITargetParams() // CreateISCSITargetParams | Created iSCSI Targets (optional)
+    createISCSITargetParams := *openapiclient.NewCreateISCSITargetParams("Name_example") // CreateISCSITargetParams | Created iSCSI Targets (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -223,9 +223,9 @@ No authorization required
 [[Back to README]](../README.md)
 
 
-## GetISCSITargets
+## ListISCSITarget
 
-> []ISCSITarget GetISCSITargets(ctx).Limit(limit).Offset(offset).Count(count).Sort(sort).Execute()
+> []ISCSITarget ListISCSITarget(ctx).Limit(limit).Offset(offset).Count(count).Sort(sort).Execute()
 
 
 
@@ -249,13 +249,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.IscsiTargetApi.GetISCSITargets(context.Background()).Limit(limit).Offset(offset).Count(count).Sort(sort).Execute()
+    resp, r, err := apiClient.IscsiTargetApi.ListISCSITarget(context.Background()).Limit(limit).Offset(offset).Count(count).Sort(sort).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `IscsiTargetApi.GetISCSITargets``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `IscsiTargetApi.ListISCSITarget``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetISCSITargets`: []ISCSITarget
-    fmt.Fprintf(os.Stdout, "Response from `IscsiTargetApi.GetISCSITargets`: %v\n", resp)
+    // response from `ListISCSITarget`: []ISCSITarget
+    fmt.Fprintf(os.Stdout, "Response from `IscsiTargetApi.ListISCSITarget`: %v\n", resp)
 }
 ```
 
@@ -265,7 +265,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetISCSITargetsRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiListISCSITargetRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
