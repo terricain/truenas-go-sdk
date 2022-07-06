@@ -907,7 +907,11 @@ paths:
       operationId: listISCSITargetExtent
       responses:
         '200':
-          $ref: '#/components/responses/Success'
+          description: 'A list of iSCSI Target Extent mapping'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListISCSITargetExtentResponse'
         '401':
           $ref: '#/components/responses/Unauthorized'
       parameters:
@@ -937,7 +941,11 @@ paths:
       operationId: createISCSITargetExtent
       responses:
         '200':
-          $ref: '#/components/responses/Success'
+          description: 'The iSCSI Target Extent mapping'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ISCSITargetExtent'
         '401':
           $ref: '#/components/responses/Unauthorized'
       parameters: []
@@ -978,7 +986,11 @@ paths:
       operationId: getISCSITargetExtent
       responses:
         '200':
-          $ref: '#/components/responses/Success'
+          description: 'The iSCSI Target Extent mapping'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ISCSITargetExtent'
         '401':
           $ref: '#/components/responses/Unauthorized'
       parameters:
@@ -2088,6 +2100,10 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/ISCSIInitiator'
+    ListISCSITargetExtentResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/ISCSITargetExtent'
 
     ISCSIInitiator:
       type: object
@@ -2113,6 +2129,8 @@ components:
     ISCSITarget:
       type: object
       properties:
+        id:
+          type: number
         name:
           type: string
         alias:
@@ -2192,6 +2210,23 @@ components:
         - name
         - type
       additionalProperties: false
+    ISCSITargetExtent:
+      type: object
+      properties:
+        id:
+          type: integer
+        target:
+          type: integer
+        lunid:
+          type: integer
+        extent:
+          type: integer
+      required:
+        - id
+        - target
+        - extent
+      additionalProperties: false
+
 
     CreateISCSIInitiatorParams:
       type: object
@@ -2302,6 +2337,7 @@ components:
               - portal
               - initator
               - authmethod
+            additionalProperties: false
       required:
         - name
       additionalProperties: false

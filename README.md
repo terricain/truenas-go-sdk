@@ -157,6 +157,7 @@ Class | Method | HTTP request | Description
  - [ISCSIExtent](docs/ISCSIExtent.md)
  - [ISCSIInitiator](docs/ISCSIInitiator.md)
  - [ISCSITarget](docs/ISCSITarget.md)
+ - [ISCSITargetExtent](docs/ISCSITargetExtent.md)
  - [ISCSITargetGroupsInner](docs/ISCSITargetGroupsInner.md)
  - [NetworkConfig](docs/NetworkConfig.md)
  - [NetworkConfigServiceAnnouncement](docs/NetworkConfigServiceAnnouncement.md)

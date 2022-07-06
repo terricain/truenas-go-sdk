@@ -20,10 +20,7 @@ type CreateISCSITargetParamsGroupsInner struct {
 	Initiator *int32 `json:"initiator,omitempty"`
 	Authmethod string `json:"authmethod"`
 	Auth map[string]interface{} `json:"auth,omitempty"`
-	AdditionalProperties map[string]interface{}
 }
-
-type _CreateISCSITargetParamsGroupsInner CreateISCSITargetParamsGroupsInner
 
 // NewCreateISCSITargetParamsGroupsInner instantiates a new CreateISCSITargetParamsGroupsInner object
 // This constructor will assign default values to properties that have it defined,
@@ -172,32 +169,7 @@ func (o CreateISCSITargetParamsGroupsInner) MarshalJSON() ([]byte, error) {
 	if o.Auth != nil {
 		toSerialize["auth"] = o.Auth
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *CreateISCSITargetParamsGroupsInner) UnmarshalJSON(bytes []byte) (err error) {
-	varCreateISCSITargetParamsGroupsInner := _CreateISCSITargetParamsGroupsInner{}
-
-	if err = json.Unmarshal(bytes, &varCreateISCSITargetParamsGroupsInner); err == nil {
-		*o = CreateISCSITargetParamsGroupsInner(varCreateISCSITargetParamsGroupsInner)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "portal")
-		delete(additionalProperties, "initiator")
-		delete(additionalProperties, "authmethod")
-		delete(additionalProperties, "auth")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableCreateISCSITargetParamsGroupsInner struct {
