@@ -42,6 +42,7 @@ docs/GroupApi.md
 docs/ISCSIExtent.md
 docs/ISCSIInitiator.md
 docs/ISCSITarget.md
+docs/ISCSITargetExtent.md
 docs/ISCSITargetGroupsInner.md
 docs/IscsiExtentApi.md
 docs/IscsiInitiatorApi.md
@@ -94,6 +95,7 @@ model_group.go
 model_iscsi_extent.go
 model_iscsi_initiator.go
 model_iscsi_target.go
+model_iscsi_target_extent.go
 model_iscsi_target_groups_inner.go
 model_network_config.go
 model_network_config_service_announcement.go

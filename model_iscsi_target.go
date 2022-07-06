@@ -16,6 +16,7 @@ import (
 
 // ISCSITarget struct for ISCSITarget
 type ISCSITarget struct {
+	Id *float32 `json:"id,omitempty"`
 	Name *string `json:"name,omitempty"`
 	Alias NullableString `json:"alias,omitempty"`
 	Mode *string `json:"mode,omitempty"`
@@ -37,6 +38,38 @@ func NewISCSITarget() *ISCSITarget {
 func NewISCSITargetWithDefaults() *ISCSITarget {
 	this := ISCSITarget{}
 	return &this
+}
+
+// GetId returns the Id field value if set, zero value otherwise.
+func (o *ISCSITarget) GetId() float32 {
+	if o == nil || o.Id == nil {
+		var ret float32
+		return ret
+	}
+	return *o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ISCSITarget) GetIdOk() (*float32, bool) {
+	if o == nil || o.Id == nil {
+		return nil, false
+	}
+	return o.Id, true
+}
+
+// HasId returns a boolean if a field has been set.
+func (o *ISCSITarget) HasId() bool {
+	if o != nil && o.Id != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given float32 and assigns it to the Id field.
+func (o *ISCSITarget) SetId(v float32) {
+	o.Id = &v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
@@ -179,6 +212,9 @@ func (o *ISCSITarget) SetGroups(v []ISCSITargetGroupsInner) {
 
 func (o ISCSITarget) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.Id != nil {
+		toSerialize["id"] = o.Id
+	}
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
 	}

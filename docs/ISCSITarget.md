@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Id** | Pointer to **float32** |  | [optional] 
 **Name** | Pointer to **string** |  | [optional] 
 **Alias** | Pointer to **NullableString** |  | [optional] 
 **Mode** | Pointer to **string** |  | [optional] 
@@ -27,6 +28,31 @@ will change when the set of required properties is changed
 NewISCSITargetWithDefaults instantiates a new ISCSITarget object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetId
+
+`func (o *ISCSITarget) GetId() float32`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *ISCSITarget) GetIdOk() (*float32, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetId
+
+`func (o *ISCSITarget) SetId(v float32)`
+
+SetId sets Id field to given value.
+
+### HasId
+
+`func (o *ISCSITarget) HasId() bool`
+
+HasId returns a boolean if a field has been set.
 
 ### GetName
 
