@@ -7,7 +7,7 @@ Method | HTTP request | Description
 [**CreateISCSITargetExtent**](IscsiTargetextentApi.md#CreateISCSITargetExtent) | **Post** /iscsi/targetextent | 
 [**DeleteISCSITargetExtent**](IscsiTargetextentApi.md#DeleteISCSITargetExtent) | **Delete** /iscsi/targetextent/id/{id} | 
 [**GetISCSITargetExtent**](IscsiTargetextentApi.md#GetISCSITargetExtent) | **Get** /iscsi/targetextent/id/{id} | 
-[**GetISCSITargetExtents**](IscsiTargetextentApi.md#GetISCSITargetExtents) | **Get** /iscsi/targetextent | 
+[**ListISCSITargetExtent**](IscsiTargetextentApi.md#ListISCSITargetExtent) | **Get** /iscsi/targetextent | 
 
 
 
@@ -219,9 +219,9 @@ No authorization required
 [[Back to README]](../README.md)
 
 
-## GetISCSITargetExtents
+## ListISCSITargetExtent
 
-> GetISCSITargetExtents(ctx).Limit(limit).Offset(offset).Count(count).Sort(sort).Execute()
+> ListISCSITargetExtent(ctx).Limit(limit).Offset(offset).Count(count).Sort(sort).Execute()
 
 
 
@@ -245,9 +245,9 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.IscsiTargetextentApi.GetISCSITargetExtents(context.Background()).Limit(limit).Offset(offset).Count(count).Sort(sort).Execute()
+    resp, r, err := apiClient.IscsiTargetextentApi.ListISCSITargetExtent(context.Background()).Limit(limit).Offset(offset).Count(count).Sort(sort).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `IscsiTargetextentApi.GetISCSITargetExtents``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `IscsiTargetextentApi.ListISCSITargetExtent``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -259,7 +259,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetISCSITargetExtentsRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiListISCSITargetExtentRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes

@@ -525,7 +525,7 @@ paths:
     get:
       tags:
         - iscsi.target
-      operationId: getISCSITargets
+      operationId: listISCSITarget
       responses:
         '200':
           description: 'A list of iSCSI Targets'
@@ -650,7 +650,7 @@ paths:
     get:
       tags:
         - iscsi.extent
-      operationId: getISCSIExtents
+      operationId: listISCSIExtent
       responses:
         '200':
           description: 'A list of iSCSI Extents'
@@ -783,7 +783,7 @@ paths:
     get:
       tags:
         - iscsi.initiator
-      operationId: getISCSIInitiators
+      operationId: listISCSIInitiator
       responses:
         '200':
           description: 'A list of iSCSI Initiators'
@@ -904,7 +904,7 @@ paths:
     get:
       tags:
         - iscsi.targetextent
-      operationId: getISCSITargetExtents
+      operationId: listISCSITargetExtent
       responses:
         '200':
           $ref: '#/components/responses/Success'
@@ -2302,6 +2302,8 @@ components:
               - portal
               - initator
               - authmethod
+      required:
+        - name
       additionalProperties: false
     DeleteISCSITargetParams:
       type: boolean

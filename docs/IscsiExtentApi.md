@@ -7,7 +7,7 @@ Method | HTTP request | Description
 [**CreateISCSIExtent**](IscsiExtentApi.md#CreateISCSIExtent) | **Post** /iscsi/extent | 
 [**DeleteISCSIExtent**](IscsiExtentApi.md#DeleteISCSIExtent) | **Delete** /iscsi/extent/id/{id} | 
 [**GetISCSIExtent**](IscsiExtentApi.md#GetISCSIExtent) | **Get** /iscsi/extent/id/{id} | 
-[**GetISCSIExtents**](IscsiExtentApi.md#GetISCSIExtents) | **Get** /iscsi/extent | 
+[**ListISCSIExtent**](IscsiExtentApi.md#ListISCSIExtent) | **Get** /iscsi/extent | 
 
 
 
@@ -223,9 +223,9 @@ No authorization required
 [[Back to README]](../README.md)
 
 
-## GetISCSIExtents
+## ListISCSIExtent
 
-> []ISCSIExtent GetISCSIExtents(ctx).Limit(limit).Offset(offset).Count(count).Sort(sort).Execute()
+> []ISCSIExtent ListISCSIExtent(ctx).Limit(limit).Offset(offset).Count(count).Sort(sort).Execute()
 
 
 
@@ -249,13 +249,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.IscsiExtentApi.GetISCSIExtents(context.Background()).Limit(limit).Offset(offset).Count(count).Sort(sort).Execute()
+    resp, r, err := apiClient.IscsiExtentApi.ListISCSIExtent(context.Background()).Limit(limit).Offset(offset).Count(count).Sort(sort).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `IscsiExtentApi.GetISCSIExtents``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `IscsiExtentApi.ListISCSIExtent``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetISCSIExtents`: []ISCSIExtent
-    fmt.Fprintf(os.Stdout, "Response from `IscsiExtentApi.GetISCSIExtents`: %v\n", resp)
+    // response from `ListISCSIExtent`: []ISCSIExtent
+    fmt.Fprintf(os.Stdout, "Response from `IscsiExtentApi.ListISCSIExtent`: %v\n", resp)
 }
 ```
 
@@ -265,7 +265,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetISCSIExtentsRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiListISCSIExtentRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
