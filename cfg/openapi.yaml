@@ -520,6 +520,492 @@ paths:
             schema:
               # Same payload as create group
               $ref: '#/components/schemas/CreateGroupParams'
+
+  /iscsi/target:
+    get:
+      tags:
+        - iscsi.target
+      operationId: getISCSITargets
+      responses:
+        '200':
+          description: 'A list of iSCSI Targets'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListISCSITargetResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      parameters:
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: integer
+        - name: count
+          in: query
+          required: false
+          schema:
+            type: boolean
+        - name: sort
+          in: query
+          required: false
+          schema:
+            type: string
+    post:
+      tags:
+        - iscsi.target
+      operationId: createISCSITarget
+      responses:
+        '200':
+          description: 'The iSCSI Target'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ISCSITarget'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      parameters: []
+      description: |-
+        Create an iSCSI Target.
+        
+        `groups` is a list of group dictionaries which provide information related to using a `portal`, `initiator`,
+        `authmethod` and `auth` with this target. `auth` represents a valid iSCSI Authorized Access and defaults to
+        null.
+      requestBody:
+        description: 'Created iSCSI Targets'
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateISCSITargetParams'
+  '/iscsi/target/id/{id}':
+    delete:
+      tags:
+        - iscsi.target
+      operationId: deleteISCSITarget
+      responses:
+        '200':
+          $ref: '#/components/responses/Success'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      description: |-
+        Delete iSCSI Target of `id`.
+
+        Deleting an iSCSI Target makes sure we delete all Associated Targets which use `id` iSCSI Target.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeleteISCSITargetParams'
+    get:
+      tags:
+        - iscsi.target
+      operationId: getISCSITarget
+      responses:
+        '200':
+          description: 'The iSCSI Targets'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ISCSITarget'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      parameters:
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: integer
+        - name: count
+          in: query
+          required: false
+          schema:
+            type: boolean
+        - name: sort
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+  /iscsi/extent:
+    get:
+      tags:
+        - iscsi.extent
+      operationId: getISCSIExtents
+      responses:
+        '200':
+          description: 'A list of iSCSI Extents'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListISCSIExtentResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      parameters:
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: integer
+        - name: count
+          in: query
+          required: false
+          schema:
+            type: boolean
+        - name: sort
+          in: query
+          required: false
+          schema:
+            type: string
+    post:
+      tags:
+        - iscsi.extent
+      operationId: createISCSIExtent
+      responses:
+        '200':
+          description: 'A created iSCSI Extent'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateISCSIExtentParams'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      parameters: []
+      description: |-
+        Create an iSCSI Extent.
+
+        When `type` is set to FILE, attribute `filesize` is used and it represents number of bytes. `filesize` if
+        not zero should be a multiple of `blocksize`. `path` is a required attribute with `type` set as FILE and it
+        should be ensured that it does not come under a jail root.
+
+        With `type` being set to DISK, a valid ZVOL or DISK should be provided.
+
+        `insecure_tpc` when enabled allows an initiator to bypass normal access control and access any scannable
+        target. This allows xcopy operations otherwise blocked by access control.
+
+        `xen` is a boolean value which is set to true if Xen is being used as the iSCSI initiator.
+
+        `ro` when set to true prevents the initiator from writing to this LUN.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ISCSIExtent'
+  '/iscsi/extent/id/{id}':
+    delete:
+      tags:
+        - iscsi.extent
+      operationId: deleteISCSIExtent
+      responses:
+        '200':
+          $ref: '#/components/responses/Success'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      description: |-
+        Delete iSCSI Extent of `id`.
+        
+        If `id` iSCSI Extent's `type` was configured to FILE, `remove` can be set to remove the configured file.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeleteISCSIExtentParams'
+    get:
+      tags:
+        - iscsi.extent
+      operationId: getISCSIExtent
+      responses:
+        '200':
+          description: Get ISCSI Extent
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ISCSIExtent'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      parameters:
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: integer
+        - name: count
+          in: query
+          required: false
+          schema:
+            type: boolean
+        - name: sort
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+  /iscsi/initiator:
+    get:
+      tags:
+        - iscsi.initiator
+      operationId: getISCSIInitiators
+      responses:
+        '200':
+          description: 'A list of iSCSI Initiators'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListISCSIInitatorResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      parameters:
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: integer
+        - name: count
+          in: query
+          required: false
+          schema:
+            type: boolean
+        - name: sort
+          in: query
+          required: false
+          schema:
+            type: string
+    post:
+      tags:
+        - iscsi.initiator
+      operationId: createISCSIInitiator
+      responses:
+        '200':
+          $ref: '#/components/responses/Success'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      parameters: []
+      description: |-
+        Create an iSCSI Initiator.
+
+        `initiators` is a list of initiator hostnames which are authorized to access an iSCSI Target. To allow all
+        possible initiators, `initiators` can be left empty.
+
+        `auth_network` is a list of IP/CIDR addresses which are allowed to use this initiator. If all networks are
+        to be allowed, this field should be left empty.
+      requestBody:
+        description: 'Created iSCSI Initiators'
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ISCSIInitiator'
+  '/iscsi/initiator/id/{id}':
+    delete:
+      tags:
+        - iscsi.initiator
+      operationId: deleteISCSIInitiator
+      responses:
+        '200':
+          $ref: '#/components/responses/Success'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      description: Delete iSCSI initiator of `id`.
+    get:
+      tags:
+        - iscsi.initiator
+      operationId: getISCSIInitiator
+      responses:
+        '200':
+          description: 'An iSCSI Initiators'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ISCSIInitiator'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      parameters:
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: integer
+        - name: count
+          in: query
+          required: false
+          schema:
+            type: boolean
+        - name: sort
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+
+
+  /iscsi/targetextent:
+    get:
+      tags:
+        - iscsi.targetextent
+      operationId: getISCSITargetExtents
+      responses:
+        '200':
+          $ref: '#/components/responses/Success'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      parameters:
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: integer
+        - name: count
+          in: query
+          required: false
+          schema:
+            type: boolean
+        - name: sort
+          in: query
+          required: false
+          schema:
+            type: string
+    post:
+      tags:
+        - iscsi.targetextent
+      operationId: createISCSITargetExtent
+      responses:
+        '200':
+          $ref: '#/components/responses/Success'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      parameters: []
+      description: |-
+        Create an Associated Target.
+
+        `lunid` will be automatically assigned if it is not provided based on the `target`.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/iscsi_targetextent_create_0'
+  '/iscsi/targetextent/id/{id}':
+    delete:
+      tags:
+        - iscsi.targetextent
+      operationId: deleteISCSITargetExtent
+      responses:
+        '200':
+          $ref: '#/components/responses/Success'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      description: Delete Associated Target of `id`.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/iscsi_targetextent_delete_1'
+    get:
+      tags:
+        - iscsi.targetextent
+      operationId: getISCSITargetExtent
+      responses:
+        '200':
+          $ref: '#/components/responses/Success'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      parameters:
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: integer
+        - name: count
+          in: query
+          required: false
+          schema:
+            type: boolean
+        - name: sort
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+
+
+
   /network/configuration:
     get:
       tags:
@@ -1586,6 +2072,219 @@ components:
     #       type: string
     #     enabled:
     #       type: boolean
+    ListISCSITargetResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/ISCSITarget'
+    ListISCSIExtentResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/ISCSIExtent'
+    ListISCSIInitatorResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/ISCSIInitiator'
+
+    ISCSIInitiator:
+      type: object
+      properties:
+        id:
+          type: integer
+        initiators:
+          type: array
+          items:
+            type: object
+        auth_network:
+          type: array
+          items:
+            type: string
+        comment:
+          type: string
+      required:
+        - id
+        - initiators
+        - auth_network
+        - comment
+      additionalProperties: false
+      default: { }
+
+    ISCSITarget:
+      type: object
+      properties:
+        name:
+          type: string
+        alias:
+          type: string
+          nullable: true
+        mode:
+          type: string
+          enum:
+            - ISCSI
+            - FC
+            - BOTH
+        groups:
+          type: array
+          items:
+            type: object
+            properties:
+              portal:
+                type: integer
+              initiator:
+                type: integer
+              auth:
+                type: object
+              authmethod:
+                type: string
+      additionalProperties: false
+
+    ISCSIExtent:
+      type: object
+      properties:
+        name:
+          type: integer
+        type:
+          type: string
+          enum:
+            - DISK
+            - FILE
+        disk:
+          type: string
+          nullable: true
+        serial:
+          type: string
+          nullable: true
+        path:
+          type: string
+          nullable: true
+        filesize:
+          type: integer
+        blocksize:
+          type: integer
+        pblocksize:
+          type: boolean
+        avail_threshold:
+          type: integer
+          nullable: true
+        comment:
+          type: string
+        insecure_tpc:
+          type: boolean
+        xen:
+          type: boolean
+        rpm:
+          type: string
+          enum:
+            - UNKNOWN
+            - SSD
+            - '5400'
+            - '7200'
+            - '10000'
+            - '15000'
+        ro:
+          type: boolean
+        enabled:
+          type: boolean
+      additionalProperties: false
+
+    CreateISCSIExtentParams:
+      type: object
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+          enum:
+            - DISK
+            - FILE
+        disk:
+          type: string
+          nullable: true
+        serial:
+          type: string
+          nullable: true
+        path:
+          type: string
+          nullable: true
+        filesize:
+          type: integer
+        blocksize:
+          type: integer
+        pblocksize:
+          type: boolean
+        avail_threshold:
+          type: integer
+          nullable: true
+        comment:
+          type: string
+        insecure_tpc:
+          type: boolean
+        xen:
+          type: boolean
+        rpm:
+          type: string
+          enum:
+            - UNKNOWN
+            - SSD
+            - '5400'
+            - '7200'
+            - '10000'
+            - '15000'
+        ro:
+          type: boolean
+        enabled:
+          type: boolean
+      additionalProperties: false
+
+    DeleteISCSIExtentParams:
+      type: object
+      properties:
+        remove:
+          type: boolean
+        force:
+          type: boolean
+      required:
+        - remove
+        - force
+      additionalProperties: false
+
+    CreateISCSITargetParams:
+      type: object
+      properties:
+        name:
+          type: string
+        alias:
+          type: string
+          nullable: true
+        mode:
+          type: string
+          enum:
+            - ISCSI
+            - FC
+            - BOTH
+        groups:
+          type: array
+          items:
+            type: object
+            properties:
+              portal:
+                type: integer
+              initiator:
+                type: integer
+              authmethod:
+                type: string
+                default: "NONE"
+              auth:
+                type: object
+            required:
+              - portal
+              - initator
+              - authmethod
+      additionalProperties: false
+    DeleteISCSITargetParams:
+      type: boolean
+
+
+
     CreateUserParams:
       type: object
       required:
