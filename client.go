@@ -55,6 +55,12 @@ type APIClient struct {
 
 	GroupApi *GroupApiService
 
+	IscsiExtentApi *IscsiExtentApiService
+
+	IscsiInitiatorApi *IscsiInitiatorApiService
+
+	IscsiTargetApi *IscsiTargetApiService
+
 	NetworkApi *NetworkApiService
 
 	PoolApi *PoolApiService
@@ -87,6 +93,9 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.CronjobApi = (*CronjobApiService)(&c.common)
 	c.DatasetApi = (*DatasetApiService)(&c.common)
 	c.GroupApi = (*GroupApiService)(&c.common)
+	c.IscsiExtentApi = (*IscsiExtentApiService)(&c.common)
+	c.IscsiInitiatorApi = (*IscsiInitiatorApiService)(&c.common)
+	c.IscsiTargetApi = (*IscsiTargetApiService)(&c.common)
 	c.NetworkApi = (*NetworkApiService)(&c.common)
 	c.PoolApi = (*PoolApiService)(&c.common)
 	c.ServiceApi = (*ServiceApiService)(&c.common)

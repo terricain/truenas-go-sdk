@@ -92,6 +92,18 @@ Class | Method | HTTP request | Description
 *GroupApi* | [**GetGroup**](docs/GroupApi.md#getgroup) | **Get** /group/id/{id} | 
 *GroupApi* | [**ListGroups**](docs/GroupApi.md#listgroups) | **Get** /group | 
 *GroupApi* | [**UpdateGroup**](docs/GroupApi.md#updategroup) | **Put** /group/id/{id} | 
+*IscsiExtentApi* | [**CreateISCSIExtent**](docs/IscsiExtentApi.md#createiscsiextent) | **Post** /iscsi/extent | 
+*IscsiExtentApi* | [**DeleteISCSIExtent**](docs/IscsiExtentApi.md#deleteiscsiextent) | **Delete** /iscsi/extent/id/{id} | 
+*IscsiExtentApi* | [**GetISCSIExtent**](docs/IscsiExtentApi.md#getiscsiextent) | **Get** /iscsi/extent/id/{id} | 
+*IscsiExtentApi* | [**GetISCSIExtents**](docs/IscsiExtentApi.md#getiscsiextents) | **Get** /iscsi/extent | 
+*IscsiInitiatorApi* | [**CreateISCSIInitiator**](docs/IscsiInitiatorApi.md#createiscsiinitiator) | **Post** /iscsi/initiator | 
+*IscsiInitiatorApi* | [**DeleteISCSIInitiator**](docs/IscsiInitiatorApi.md#deleteiscsiinitiator) | **Delete** /iscsi/initiator/id/{id} | 
+*IscsiInitiatorApi* | [**GetISCSIInitiator**](docs/IscsiInitiatorApi.md#getiscsiinitiator) | **Get** /iscsi/initiator/id/{id} | 
+*IscsiInitiatorApi* | [**GetISCSIInitiators**](docs/IscsiInitiatorApi.md#getiscsiinitiators) | **Get** /iscsi/initiator | 
+*IscsiTargetApi* | [**CreateISCSITarget**](docs/IscsiTargetApi.md#createiscsitarget) | **Post** /iscsi/target | 
+*IscsiTargetApi* | [**DeleteISCSITarget**](docs/IscsiTargetApi.md#deleteiscsitarget) | **Delete** /iscsi/target/id/{id} | 
+*IscsiTargetApi* | [**GetISCSITarget**](docs/IscsiTargetApi.md#getiscsitarget) | **Get** /iscsi/target/id/{id} | 
+*IscsiTargetApi* | [**GetISCSITargets**](docs/IscsiTargetApi.md#getiscsitargets) | **Get** /iscsi/target | 
 *NetworkApi* | [**GetNetworkConfiguration**](docs/NetworkApi.md#getnetworkconfiguration) | **Get** /network/configuration | 
 *NetworkApi* | [**GetNetworkSummary**](docs/NetworkApi.md#getnetworksummary) | **Get** /network/general/summary | 
 *PoolApi* | [**ListPools**](docs/PoolApi.md#listpools) | **Get** /pool | 
@@ -123,6 +135,9 @@ Class | Method | HTTP request | Description
  - [CreateDatasetParams](docs/CreateDatasetParams.md)
  - [CreateDatasetParamsEncryptionOptions](docs/CreateDatasetParamsEncryptionOptions.md)
  - [CreateGroupParams](docs/CreateGroupParams.md)
+ - [CreateISCSIExtentParams](docs/CreateISCSIExtentParams.md)
+ - [CreateISCSITargetParams](docs/CreateISCSITargetParams.md)
+ - [CreateISCSITargetParamsGroupsInner](docs/CreateISCSITargetParamsGroupsInner.md)
  - [CreateShareNFSParams](docs/CreateShareNFSParams.md)
  - [CreateShareSMBParams](docs/CreateShareSMBParams.md)
  - [CreateUserParams](docs/CreateUserParams.md)
@@ -130,8 +145,13 @@ Class | Method | HTTP request | Description
  - [CronJobSchedule](docs/CronJobSchedule.md)
  - [Dataset](docs/Dataset.md)
  - [DeleteGroupParams](docs/DeleteGroupParams.md)
+ - [DeleteISCSIExtentParams](docs/DeleteISCSIExtentParams.md)
  - [DeleteUserParams](docs/DeleteUserParams.md)
  - [Group](docs/Group.md)
+ - [ISCSIExtent](docs/ISCSIExtent.md)
+ - [ISCSIInitiator](docs/ISCSIInitiator.md)
+ - [ISCSITarget](docs/ISCSITarget.md)
+ - [ISCSITargetGroupsInner](docs/ISCSITargetGroupsInner.md)
  - [NetworkConfig](docs/NetworkConfig.md)
  - [NetworkConfigServiceAnnouncement](docs/NetworkConfigServiceAnnouncement.md)
  - [NetworkSummary](docs/NetworkSummary.md)
