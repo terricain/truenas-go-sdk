@@ -16,8 +16,8 @@ import (
 
 // CreateISCSIExtentParams struct for CreateISCSIExtentParams
 type CreateISCSIExtentParams struct {
-	Name *string `json:"name,omitempty"`
-	Type *string `json:"type,omitempty"`
+	Name string `json:"name"`
+	Type string `json:"type"`
 	Disk NullableString `json:"disk,omitempty"`
 	Serial NullableString `json:"serial,omitempty"`
 	Path NullableString `json:"path,omitempty"`
@@ -37,8 +37,10 @@ type CreateISCSIExtentParams struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateISCSIExtentParams() *CreateISCSIExtentParams {
+func NewCreateISCSIExtentParams(name string, type_ string) *CreateISCSIExtentParams {
 	this := CreateISCSIExtentParams{}
+	this.Name = name
+	this.Type = type_
 	return &this
 }
 
@@ -50,68 +52,52 @@ func NewCreateISCSIExtentParamsWithDefaults() *CreateISCSIExtentParams {
 	return &this
 }
 
-// GetName returns the Name field value if set, zero value otherwise.
+// GetName returns the Name field value
 func (o *CreateISCSIExtentParams) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Name
+
+	return o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 func (o *CreateISCSIExtentParams) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Name, true
+	return &o.Name, true
 }
 
-// HasName returns a boolean if a field has been set.
-func (o *CreateISCSIExtentParams) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetName gets a reference to the given string and assigns it to the Name field.
+// SetName sets field value
 func (o *CreateISCSIExtentParams) SetName(v string) {
-	o.Name = &v
+	o.Name = v
 }
 
-// GetType returns the Type field value if set, zero value otherwise.
+// GetType returns the Type field value
 func (o *CreateISCSIExtentParams) GetType() string {
-	if o == nil || o.Type == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Type
+
+	return o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
+// GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *CreateISCSIExtentParams) GetTypeOk() (*string, bool) {
-	if o == nil || o.Type == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Type, true
+	return &o.Type, true
 }
 
-// HasType returns a boolean if a field has been set.
-func (o *CreateISCSIExtentParams) HasType() bool {
-	if o != nil && o.Type != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetType gets a reference to the given string and assigns it to the Type field.
+// SetType sets field value
 func (o *CreateISCSIExtentParams) SetType(v string) {
-	o.Type = &v
+	o.Type = v
 }
 
 // GetDisk returns the Disk field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -572,10 +558,10 @@ func (o *CreateISCSIExtentParams) SetEnabled(v bool) {
 
 func (o CreateISCSIExtentParams) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Name != nil {
+	if true {
 		toSerialize["name"] = o.Name
 	}
-	if o.Type != nil {
+	if true {
 		toSerialize["type"] = o.Type
 	}
 	if o.Disk.IsSet() {

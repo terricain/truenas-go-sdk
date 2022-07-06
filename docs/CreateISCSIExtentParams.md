@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** |  | [optional] 
-**Type** | Pointer to **string** |  | [optional] 
+**Name** | **string** |  | 
+**Type** | **string** |  | 
 **Disk** | Pointer to **NullableString** |  | [optional] 
 **Serial** | Pointer to **NullableString** |  | [optional] 
 **Path** | Pointer to **NullableString** |  | [optional] 
@@ -24,7 +24,7 @@ Name | Type | Description | Notes
 
 ### NewCreateISCSIExtentParams
 
-`func NewCreateISCSIExtentParams() *CreateISCSIExtentParams`
+`func NewCreateISCSIExtentParams(name string, type_ string, ) *CreateISCSIExtentParams`
 
 NewCreateISCSIExtentParams instantiates a new CreateISCSIExtentParams object
 This constructor will assign default values to properties that have it defined,
@@ -58,11 +58,6 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
-### HasName
-
-`func (o *CreateISCSIExtentParams) HasName() bool`
-
-HasName returns a boolean if a field has been set.
 
 ### GetType
 
@@ -83,11 +78,6 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-### HasType
-
-`func (o *CreateISCSIExtentParams) HasType() bool`
-
-HasType returns a boolean if a field has been set.
 
 ### GetDisk
 

@@ -16,8 +16,9 @@ import (
 
 // ISCSIExtent struct for ISCSIExtent
 type ISCSIExtent struct {
-	Name *int32 `json:"name,omitempty"`
-	Type *string `json:"type,omitempty"`
+	Id int32 `json:"id"`
+	Name string `json:"name"`
+	Type string `json:"type"`
 	Disk NullableString `json:"disk,omitempty"`
 	Serial NullableString `json:"serial,omitempty"`
 	Path NullableString `json:"path,omitempty"`
@@ -37,8 +38,11 @@ type ISCSIExtent struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewISCSIExtent() *ISCSIExtent {
+func NewISCSIExtent(id int32, name string, type_ string) *ISCSIExtent {
 	this := ISCSIExtent{}
+	this.Id = id
+	this.Name = name
+	this.Type = type_
 	return &this
 }
 
@@ -50,68 +54,76 @@ func NewISCSIExtentWithDefaults() *ISCSIExtent {
 	return &this
 }
 
-// GetName returns the Name field value if set, zero value otherwise.
-func (o *ISCSIExtent) GetName() int32 {
-	if o == nil || o.Name == nil {
+// GetId returns the Id field value
+func (o *ISCSIExtent) GetId() int32 {
+	if o == nil {
 		var ret int32
 		return ret
 	}
-	return *o.Name
+
+	return o.Id
 }
 
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *ISCSIExtent) GetNameOk() (*int32, bool) {
-	if o == nil || o.Name == nil {
+func (o *ISCSIExtent) GetIdOk() (*int32, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Name, true
+	return &o.Id, true
 }
 
-// HasName returns a boolean if a field has been set.
-func (o *ISCSIExtent) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
+// SetId sets field value
+func (o *ISCSIExtent) SetId(v int32) {
+	o.Id = v
 }
 
-// SetName gets a reference to the given int32 and assigns it to the Name field.
-func (o *ISCSIExtent) SetName(v int32) {
-	o.Name = &v
-}
-
-// GetType returns the Type field value if set, zero value otherwise.
-func (o *ISCSIExtent) GetType() string {
-	if o == nil || o.Type == nil {
+// GetName returns the Name field value
+func (o *ISCSIExtent) GetName() string {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Type
+
+	return o.Name
 }
 
-// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
+// GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *ISCSIExtent) GetTypeOk() (*string, bool) {
-	if o == nil || o.Type == nil {
+func (o *ISCSIExtent) GetNameOk() (*string, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Type, true
+	return &o.Name, true
 }
 
-// HasType returns a boolean if a field has been set.
-func (o *ISCSIExtent) HasType() bool {
-	if o != nil && o.Type != nil {
-		return true
+// SetName sets field value
+func (o *ISCSIExtent) SetName(v string) {
+	o.Name = v
+}
+
+// GetType returns the Type field value
+func (o *ISCSIExtent) GetType() string {
+	if o == nil {
+		var ret string
+		return ret
 	}
 
-	return false
+	return o.Type
 }
 
-// SetType gets a reference to the given string and assigns it to the Type field.
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *ISCSIExtent) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
+// SetType sets field value
 func (o *ISCSIExtent) SetType(v string) {
-	o.Type = &v
+	o.Type = v
 }
 
 // GetDisk returns the Disk field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -572,10 +584,13 @@ func (o *ISCSIExtent) SetEnabled(v bool) {
 
 func (o ISCSIExtent) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Name != nil {
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
 		toSerialize["name"] = o.Name
 	}
-	if o.Type != nil {
+	if true {
 		toSerialize["type"] = o.Type
 	}
 	if o.Disk.IsSet() {

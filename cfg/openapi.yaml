@@ -691,7 +691,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CreateISCSIExtentParams'
+                $ref: '#/components/schemas/ISCSIExtent'
         '401':
           $ref: '#/components/responses/Unauthorized'
       parameters: []
@@ -714,7 +714,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ISCSIExtent'
+              $ref: '#/components/schemas/CreateISCSIExtentParams'
   '/iscsi/extent/id/{id}':
     delete:
       tags:
@@ -945,7 +945,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/iscsi_targetextent_create_0'
+              $ref: '#/components/schemas/CreateISCSITargetExtentParams'
   '/iscsi/targetextent/id/{id}':
     delete:
       tags:
@@ -967,7 +967,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/iscsi_targetextent_delete_1'
+              $ref: '#/components/schemas/DeleteISCSITargetExtentParams'
     get:
       tags:
         - iscsi.targetextent
@@ -2140,8 +2140,10 @@ components:
     ISCSIExtent:
       type: object
       properties:
-        name:
+        id:
           type: integer
+        name:
+          type: string
         type:
           type: string
           enum:
@@ -2184,6 +2186,10 @@ components:
           type: boolean
         enabled:
           type: boolean
+      required:
+        - id
+        - name
+        - type
       additionalProperties: false
 
     CreateISCSIExtentParams:
@@ -2233,6 +2239,9 @@ components:
           type: boolean
         enabled:
           type: boolean
+      required:
+        - name
+        - type
       additionalProperties: false
 
     DeleteISCSIExtentParams:
@@ -2283,7 +2292,22 @@ components:
     DeleteISCSITargetParams:
       type: boolean
 
-
+    CreateISCSITargetExtentParams:
+      type: object
+      properties:
+        target:
+          type: integer
+        lunid:
+          type: integer
+          nullable: true
+        extent:
+          type: integer
+      required:
+        - target
+        - extent
+      additionalProperties: false
+    DeleteISCSITargetExtentParams:
+      type: boolean
 
     CreateUserParams:
       type: object

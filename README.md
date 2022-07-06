@@ -104,6 +104,10 @@ Class | Method | HTTP request | Description
 *IscsiTargetApi* | [**DeleteISCSITarget**](docs/IscsiTargetApi.md#deleteiscsitarget) | **Delete** /iscsi/target/id/{id} | 
 *IscsiTargetApi* | [**GetISCSITarget**](docs/IscsiTargetApi.md#getiscsitarget) | **Get** /iscsi/target/id/{id} | 
 *IscsiTargetApi* | [**GetISCSITargets**](docs/IscsiTargetApi.md#getiscsitargets) | **Get** /iscsi/target | 
+*IscsiTargetextentApi* | [**CreateISCSITargetExtent**](docs/IscsiTargetextentApi.md#createiscsitargetextent) | **Post** /iscsi/targetextent | 
+*IscsiTargetextentApi* | [**DeleteISCSITargetExtent**](docs/IscsiTargetextentApi.md#deleteiscsitargetextent) | **Delete** /iscsi/targetextent/id/{id} | 
+*IscsiTargetextentApi* | [**GetISCSITargetExtent**](docs/IscsiTargetextentApi.md#getiscsitargetextent) | **Get** /iscsi/targetextent/id/{id} | 
+*IscsiTargetextentApi* | [**GetISCSITargetExtents**](docs/IscsiTargetextentApi.md#getiscsitargetextents) | **Get** /iscsi/targetextent | 
 *NetworkApi* | [**GetNetworkConfiguration**](docs/NetworkApi.md#getnetworkconfiguration) | **Get** /network/configuration | 
 *NetworkApi* | [**GetNetworkSummary**](docs/NetworkApi.md#getnetworksummary) | **Get** /network/general/summary | 
 *PoolApi* | [**ListPools**](docs/PoolApi.md#listpools) | **Get** /pool | 
@@ -136,6 +140,7 @@ Class | Method | HTTP request | Description
  - [CreateDatasetParamsEncryptionOptions](docs/CreateDatasetParamsEncryptionOptions.md)
  - [CreateGroupParams](docs/CreateGroupParams.md)
  - [CreateISCSIExtentParams](docs/CreateISCSIExtentParams.md)
+ - [CreateISCSITargetExtentParams](docs/CreateISCSITargetExtentParams.md)
  - [CreateISCSITargetParams](docs/CreateISCSITargetParams.md)
  - [CreateISCSITargetParamsGroupsInner](docs/CreateISCSITargetParamsGroupsInner.md)
  - [CreateShareNFSParams](docs/CreateShareNFSParams.md)
