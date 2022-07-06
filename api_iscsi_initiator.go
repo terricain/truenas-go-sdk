@@ -26,16 +26,16 @@ type IscsiInitiatorApiService service
 type ApiCreateISCSIInitiatorRequest struct {
 	ctx context.Context
 	ApiService *IscsiInitiatorApiService
-	iSCSIInitiator *ISCSIInitiator
+	createISCSIInitiatorParams *CreateISCSIInitiatorParams
 }
 
 // Created iSCSI Initiators
-func (r ApiCreateISCSIInitiatorRequest) ISCSIInitiator(iSCSIInitiator ISCSIInitiator) ApiCreateISCSIInitiatorRequest {
-	r.iSCSIInitiator = &iSCSIInitiator
+func (r ApiCreateISCSIInitiatorRequest) CreateISCSIInitiatorParams(createISCSIInitiatorParams CreateISCSIInitiatorParams) ApiCreateISCSIInitiatorRequest {
+	r.createISCSIInitiatorParams = &createISCSIInitiatorParams
 	return r
 }
 
-func (r ApiCreateISCSIInitiatorRequest) Execute() (*http.Response, error) {
+func (r ApiCreateISCSIInitiatorRequest) Execute() (*ISCSIInitiator, *http.Response, error) {
 	return r.ApiService.CreateISCSIInitiatorExecute(r)
 }
 
@@ -61,16 +61,18 @@ func (a *IscsiInitiatorApiService) CreateISCSIInitiator(ctx context.Context) Api
 }
 
 // Execute executes the request
-func (a *IscsiInitiatorApiService) CreateISCSIInitiatorExecute(r ApiCreateISCSIInitiatorRequest) (*http.Response, error) {
+//  @return ISCSIInitiator
+func (a *IscsiInitiatorApiService) CreateISCSIInitiatorExecute(r ApiCreateISCSIInitiatorRequest) (*ISCSIInitiator, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
+		localVarReturnValue  *ISCSIInitiator
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IscsiInitiatorApiService.CreateISCSIInitiator")
 	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/iscsi/initiator"
@@ -89,7 +91,7 @@ func (a *IscsiInitiatorApiService) CreateISCSIInitiatorExecute(r ApiCreateISCSII
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -97,22 +99,22 @@ func (a *IscsiInitiatorApiService) CreateISCSIInitiatorExecute(r ApiCreateISCSII
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.iSCSIInitiator
+	localVarPostBody = r.createISCSIInitiatorParams
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		return nil, err
+		return localVarReturnValue, nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -120,10 +122,19 @@ func (a *IscsiInitiatorApiService) CreateISCSIInitiatorExecute(r ApiCreateISCSII
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		return localVarHTTPResponse, newErr
+		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, nil
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
 type ApiDeleteISCSIInitiatorRequest struct {

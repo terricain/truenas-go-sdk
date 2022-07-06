@@ -140,6 +140,7 @@ Class | Method | HTTP request | Description
  - [CreateDatasetParamsEncryptionOptions](docs/CreateDatasetParamsEncryptionOptions.md)
  - [CreateGroupParams](docs/CreateGroupParams.md)
  - [CreateISCSIExtentParams](docs/CreateISCSIExtentParams.md)
+ - [CreateISCSIInitiatorParams](docs/CreateISCSIInitiatorParams.md)
  - [CreateISCSITargetExtentParams](docs/CreateISCSITargetExtentParams.md)
  - [CreateISCSITargetParams](docs/CreateISCSITargetParams.md)
  - [CreateISCSITargetParamsGroupsInner](docs/CreateISCSITargetParamsGroupsInner.md)

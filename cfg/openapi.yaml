@@ -790,7 +790,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ListISCSIInitatorResponse'
+                $ref: '#/components/schemas/ListISCSIInitiatorResponse'
         '401':
           $ref: '#/components/responses/Unauthorized'
       parameters:
@@ -820,7 +820,11 @@ paths:
       operationId: createISCSIInitiator
       responses:
         '200':
-          $ref: '#/components/responses/Success'
+          description: 'iSCSI Initiator'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ISCSIInitiator'
         '401':
           $ref: '#/components/responses/Unauthorized'
       parameters: []
@@ -837,7 +841,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ISCSIInitiator'
+              $ref: '#/components/schemas/CreateISCSIInitiatorParams'
   '/iscsi/initiator/id/{id}':
     delete:
       tags:
@@ -2080,7 +2084,7 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/ISCSIExtent'
-    ListISCSIInitatorResponse:
+    ListISCSIInitiatorResponse:
       type: array
       items:
         $ref: '#/components/schemas/ISCSIInitiator'
@@ -2106,8 +2110,6 @@ components:
         - auth_network
         - comment
       additionalProperties: false
-      default: { }
-
     ISCSITarget:
       type: object
       properties:
@@ -2136,7 +2138,6 @@ components:
               authmethod:
                 type: string
       additionalProperties: false
-
     ISCSIExtent:
       type: object
       properties:
@@ -2159,7 +2160,7 @@ components:
           type: string
           nullable: true
         filesize:
-          type: integer
+          type: string
         blocksize:
           type: integer
         pblocksize:
@@ -2190,6 +2191,21 @@ components:
         - id
         - name
         - type
+      additionalProperties: false
+
+    CreateISCSIInitiatorParams:
+      type: object
+      properties:
+        initiators:
+          type: array
+          items:
+            type: string
+        auth_network:
+          type: array
+          items:
+            type: string
+        comment:
+          type: string
       additionalProperties: false
 
     CreateISCSIExtentParams:
@@ -2243,7 +2259,6 @@ components:
         - name
         - type
       additionalProperties: false
-
     DeleteISCSIExtentParams:
       type: object
       properties:
@@ -2255,7 +2270,6 @@ components:
         - remove
         - force
       additionalProperties: false
-
     CreateISCSITargetParams:
       type: object
       properties:
@@ -2291,7 +2305,6 @@ components:
       additionalProperties: false
     DeleteISCSITargetParams:
       type: boolean
-
     CreateISCSITargetExtentParams:
       type: object
       properties:

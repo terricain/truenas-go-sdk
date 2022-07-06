@@ -22,7 +22,7 @@ type ISCSIExtent struct {
 	Disk NullableString `json:"disk,omitempty"`
 	Serial NullableString `json:"serial,omitempty"`
 	Path NullableString `json:"path,omitempty"`
-	Filesize *int32 `json:"filesize,omitempty"`
+	Filesize *string `json:"filesize,omitempty"`
 	Blocksize *int32 `json:"blocksize,omitempty"`
 	Pblocksize *bool `json:"pblocksize,omitempty"`
 	AvailThreshold NullableInt32 `json:"avail_threshold,omitempty"`
@@ -253,9 +253,9 @@ func (o *ISCSIExtent) UnsetPath() {
 }
 
 // GetFilesize returns the Filesize field value if set, zero value otherwise.
-func (o *ISCSIExtent) GetFilesize() int32 {
+func (o *ISCSIExtent) GetFilesize() string {
 	if o == nil || o.Filesize == nil {
-		var ret int32
+		var ret string
 		return ret
 	}
 	return *o.Filesize
@@ -263,7 +263,7 @@ func (o *ISCSIExtent) GetFilesize() int32 {
 
 // GetFilesizeOk returns a tuple with the Filesize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ISCSIExtent) GetFilesizeOk() (*int32, bool) {
+func (o *ISCSIExtent) GetFilesizeOk() (*string, bool) {
 	if o == nil || o.Filesize == nil {
 		return nil, false
 	}
@@ -279,8 +279,8 @@ func (o *ISCSIExtent) HasFilesize() bool {
 	return false
 }
 
-// SetFilesize gets a reference to the given int32 and assigns it to the Filesize field.
-func (o *ISCSIExtent) SetFilesize(v int32) {
+// SetFilesize gets a reference to the given string and assigns it to the Filesize field.
+func (o *ISCSIExtent) SetFilesize(v string) {
 	o.Filesize = &v
 }
 
