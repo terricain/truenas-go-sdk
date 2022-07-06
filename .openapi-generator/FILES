@@ -22,6 +22,7 @@ docs/CreateDatasetParams.md
 docs/CreateDatasetParamsEncryptionOptions.md
 docs/CreateGroupParams.md
 docs/CreateISCSIExtentParams.md
+docs/CreateISCSIInitiatorParams.md
 docs/CreateISCSITargetExtentParams.md
 docs/CreateISCSITargetParams.md
 docs/CreateISCSITargetParamsGroupsInner.md
@@ -76,6 +77,7 @@ model_create_dataset_params.go
 model_create_dataset_params_encryption_options.go
 model_create_group_params.go
 model_create_iscsi_extent_params.go
+model_create_iscsi_initiator_params.go
 model_create_iscsi_target_extent_params.go
 model_create_iscsi_target_params.go
 model_create_iscsi_target_params_groups_inner.go

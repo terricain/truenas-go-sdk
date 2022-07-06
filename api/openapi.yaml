@@ -884,7 +884,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ListISCSIInitatorResponse'
+                $ref: '#/components/schemas/ListISCSIInitiatorResponse'
           description: A list of iSCSI Initiators
         "401":
           description: No authorization for this endpoint
@@ -902,11 +902,15 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ISCSIInitiator'
+              $ref: '#/components/schemas/CreateISCSIInitiatorParams'
         description: Created iSCSI Initiators
       responses:
         "200":
-          description: Operation succeeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ISCSIInitiator'
+          description: iSCSI Initiator
         "401":
           description: No authorization for this endpoint
       tags:
@@ -2275,13 +2279,12 @@ components:
       items:
         $ref: '#/components/schemas/ISCSIExtent'
       type: array
-    ListISCSIInitatorResponse:
+    ListISCSIInitiatorResponse:
       items:
         $ref: '#/components/schemas/ISCSIInitiator'
       type: array
     ISCSIInitiator:
       additionalProperties: false
-      default: {}
       example:
         comment: comment
         id: 0
@@ -2345,10 +2348,10 @@ components:
     ISCSIExtent:
       additionalProperties: false
       example:
-        blocksize: 1
+        blocksize: 6
         xen: true
-        avail_threshold: 5
-        filesize: 6
+        avail_threshold: 1
+        filesize: filesize
         type: DISK
         pblocksize: true
         rpm: UNKNOWN
@@ -2381,7 +2384,7 @@ components:
           nullable: true
           type: string
         filesize:
-          type: integer
+          type: string
         blocksize:
           type: integer
         pblocksize:
@@ -2412,6 +2415,28 @@ components:
       - id
       - name
       - type
+      type: object
+    CreateISCSIInitiatorParams:
+      additionalProperties: false
+      example:
+        comment: comment
+        initiators:
+        - initiators
+        - initiators
+        auth_network:
+        - auth_network
+        - auth_network
+      properties:
+        initiators:
+          items:
+            type: string
+          type: array
+        auth_network:
+          items:
+            type: string
+          type: array
+        comment:
+          type: string
       type: object
     CreateISCSIExtentParams:
       additionalProperties: false

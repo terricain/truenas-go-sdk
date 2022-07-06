@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **Disk** | Pointer to **NullableString** |  | [optional] 
 **Serial** | Pointer to **NullableString** |  | [optional] 
 **Path** | Pointer to **NullableString** |  | [optional] 
-**Filesize** | Pointer to **int32** |  | [optional] 
+**Filesize** | Pointer to **string** |  | [optional] 
 **Blocksize** | Pointer to **int32** |  | [optional] 
 **Pblocksize** | Pointer to **bool** |  | [optional] 
 **AvailThreshold** | Pointer to **NullableInt32** |  | [optional] 
@@ -207,20 +207,20 @@ HasPath returns a boolean if a field has been set.
 UnsetPath ensures that no value is present for Path, not even an explicit nil
 ### GetFilesize
 
-`func (o *ISCSIExtent) GetFilesize() int32`
+`func (o *ISCSIExtent) GetFilesize() string`
 
 GetFilesize returns the Filesize field if non-nil, zero value otherwise.
 
 ### GetFilesizeOk
 
-`func (o *ISCSIExtent) GetFilesizeOk() (*int32, bool)`
+`func (o *ISCSIExtent) GetFilesizeOk() (*string, bool)`
 
 GetFilesizeOk returns a tuple with the Filesize field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFilesize
 
-`func (o *ISCSIExtent) SetFilesize(v int32)`
+`func (o *ISCSIExtent) SetFilesize(v string)`
 
 SetFilesize sets Filesize field to given value.
 

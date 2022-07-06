@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 ## CreateISCSIInitiator
 
-> CreateISCSIInitiator(ctx).ISCSIInitiator(iSCSIInitiator).Execute()
+> ISCSIInitiator CreateISCSIInitiator(ctx).CreateISCSIInitiatorParams(createISCSIInitiatorParams).Execute()
 
 
 
@@ -32,15 +32,17 @@ import (
 )
 
 func main() {
-    iSCSIInitiator := *openapiclient.NewISCSIInitiator(int32(123), []map[string]interface{}{map[string]interface{}(123)}, []string{"AuthNetwork_example"}, "Comment_example") // ISCSIInitiator | Created iSCSI Initiators (optional)
+    createISCSIInitiatorParams := *openapiclient.NewCreateISCSIInitiatorParams() // CreateISCSIInitiatorParams | Created iSCSI Initiators (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.IscsiInitiatorApi.CreateISCSIInitiator(context.Background()).ISCSIInitiator(iSCSIInitiator).Execute()
+    resp, r, err := apiClient.IscsiInitiatorApi.CreateISCSIInitiator(context.Background()).CreateISCSIInitiatorParams(createISCSIInitiatorParams).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `IscsiInitiatorApi.CreateISCSIInitiator``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
+    // response from `CreateISCSIInitiator`: ISCSIInitiator
+    fmt.Fprintf(os.Stdout, "Response from `IscsiInitiatorApi.CreateISCSIInitiator`: %v\n", resp)
 }
 ```
 
@@ -55,11 +57,11 @@ Other parameters are passed through a pointer to a apiCreateISCSIInitiatorReques
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **iSCSIInitiator** | [**ISCSIInitiator**](ISCSIInitiator.md) | Created iSCSI Initiators | 
+ **createISCSIInitiatorParams** | [**CreateISCSIInitiatorParams**](CreateISCSIInitiatorParams.md) | Created iSCSI Initiators | 
 
 ### Return type
 
- (empty response body)
+[**ISCSIInitiator**](ISCSIInitiator.md)
 
 ### Authorization
 
@@ -68,7 +70,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
