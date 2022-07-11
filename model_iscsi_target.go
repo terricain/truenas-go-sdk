@@ -16,19 +16,24 @@ import (
 
 // ISCSITarget struct for ISCSITarget
 type ISCSITarget struct {
-	Id *int32 `json:"id,omitempty"`
-	Name *string `json:"name,omitempty"`
-	Alias NullableString `json:"alias,omitempty"`
-	Mode *string `json:"mode,omitempty"`
-	Groups []ISCSITargetGroupsInner `json:"groups,omitempty"`
+	Id int32 `json:"id"`
+	Name string `json:"name"`
+	Alias NullableString `json:"alias"`
+	Mode string `json:"mode"`
+	Groups []ISCSITargetGroupsInner `json:"groups"`
 }
 
 // NewISCSITarget instantiates a new ISCSITarget object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewISCSITarget() *ISCSITarget {
+func NewISCSITarget(id int32, name string, alias NullableString, mode string, groups []ISCSITargetGroupsInner) *ISCSITarget {
 	this := ISCSITarget{}
+	this.Id = id
+	this.Name = name
+	this.Alias = alias
+	this.Mode = mode
+	this.Groups = groups
 	return &this
 }
 
@@ -40,80 +45,66 @@ func NewISCSITargetWithDefaults() *ISCSITarget {
 	return &this
 }
 
-// GetId returns the Id field value if set, zero value otherwise.
+// GetId returns the Id field value
 func (o *ISCSITarget) GetId() int32 {
-	if o == nil || o.Id == nil {
+	if o == nil {
 		var ret int32
 		return ret
 	}
-	return *o.Id
+
+	return o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
 func (o *ISCSITarget) GetIdOk() (*int32, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Id, true
+	return &o.Id, true
 }
 
-// HasId returns a boolean if a field has been set.
-func (o *ISCSITarget) HasId() bool {
-	if o != nil && o.Id != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetId gets a reference to the given int32 and assigns it to the Id field.
+// SetId sets field value
 func (o *ISCSITarget) SetId(v int32) {
-	o.Id = &v
+	o.Id = v
 }
 
-// GetName returns the Name field value if set, zero value otherwise.
+// GetName returns the Name field value
 func (o *ISCSITarget) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Name
+
+	return o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 func (o *ISCSITarget) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Name, true
+	return &o.Name, true
 }
 
-// HasName returns a boolean if a field has been set.
-func (o *ISCSITarget) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetName gets a reference to the given string and assigns it to the Name field.
+// SetName sets field value
 func (o *ISCSITarget) SetName(v string) {
-	o.Name = &v
+	o.Name = v
 }
 
-// GetAlias returns the Alias field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetAlias returns the Alias field value
+// If the value is explicit nil, the zero value for string will be returned
 func (o *ISCSITarget) GetAlias() string {
 	if o == nil || o.Alias.Get() == nil {
 		var ret string
 		return ret
 	}
+
 	return *o.Alias.Get()
 }
 
-// GetAliasOk returns a tuple with the Alias field value if set, nil otherwise
+// GetAliasOk returns a tuple with the Alias field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ISCSITarget) GetAliasOk() (*string, bool) {
@@ -123,108 +114,74 @@ func (o *ISCSITarget) GetAliasOk() (*string, bool) {
 	return o.Alias.Get(), o.Alias.IsSet()
 }
 
-// HasAlias returns a boolean if a field has been set.
-func (o *ISCSITarget) HasAlias() bool {
-	if o != nil && o.Alias.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetAlias gets a reference to the given NullableString and assigns it to the Alias field.
+// SetAlias sets field value
 func (o *ISCSITarget) SetAlias(v string) {
 	o.Alias.Set(&v)
 }
-// SetAliasNil sets the value for Alias to be an explicit nil
-func (o *ISCSITarget) SetAliasNil() {
-	o.Alias.Set(nil)
-}
 
-// UnsetAlias ensures that no value is present for Alias, not even an explicit nil
-func (o *ISCSITarget) UnsetAlias() {
-	o.Alias.Unset()
-}
-
-// GetMode returns the Mode field value if set, zero value otherwise.
+// GetMode returns the Mode field value
 func (o *ISCSITarget) GetMode() string {
-	if o == nil || o.Mode == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Mode
+
+	return o.Mode
 }
 
-// GetModeOk returns a tuple with the Mode field value if set, nil otherwise
+// GetModeOk returns a tuple with the Mode field value
 // and a boolean to check if the value has been set.
 func (o *ISCSITarget) GetModeOk() (*string, bool) {
-	if o == nil || o.Mode == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Mode, true
+	return &o.Mode, true
 }
 
-// HasMode returns a boolean if a field has been set.
-func (o *ISCSITarget) HasMode() bool {
-	if o != nil && o.Mode != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetMode gets a reference to the given string and assigns it to the Mode field.
+// SetMode sets field value
 func (o *ISCSITarget) SetMode(v string) {
-	o.Mode = &v
+	o.Mode = v
 }
 
-// GetGroups returns the Groups field value if set, zero value otherwise.
+// GetGroups returns the Groups field value
 func (o *ISCSITarget) GetGroups() []ISCSITargetGroupsInner {
-	if o == nil || o.Groups == nil {
+	if o == nil {
 		var ret []ISCSITargetGroupsInner
 		return ret
 	}
+
 	return o.Groups
 }
 
-// GetGroupsOk returns a tuple with the Groups field value if set, nil otherwise
+// GetGroupsOk returns a tuple with the Groups field value
 // and a boolean to check if the value has been set.
 func (o *ISCSITarget) GetGroupsOk() ([]ISCSITargetGroupsInner, bool) {
-	if o == nil || o.Groups == nil {
+	if o == nil {
 		return nil, false
 	}
 	return o.Groups, true
 }
 
-// HasGroups returns a boolean if a field has been set.
-func (o *ISCSITarget) HasGroups() bool {
-	if o != nil && o.Groups != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetGroups gets a reference to the given []ISCSITargetGroupsInner and assigns it to the Groups field.
+// SetGroups sets field value
 func (o *ISCSITarget) SetGroups(v []ISCSITargetGroupsInner) {
 	o.Groups = v
 }
 
 func (o ISCSITarget) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Id != nil {
+	if true {
 		toSerialize["id"] = o.Id
 	}
-	if o.Name != nil {
+	if true {
 		toSerialize["name"] = o.Name
 	}
-	if o.Alias.IsSet() {
+	if true {
 		toSerialize["alias"] = o.Alias.Get()
 	}
-	if o.Mode != nil {
+	if true {
 		toSerialize["mode"] = o.Mode
 	}
-	if o.Groups != nil {
+	if true {
 		toSerialize["groups"] = o.Groups
 	}
 	return json.Marshal(toSerialize)

@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Portal** | Pointer to **int32** |  | [optional] 
+**Portal** | **int32** |  | 
 **Initiator** | Pointer to **int32** |  | [optional] 
 **Auth** | Pointer to **map[string]interface{}** |  | [optional] 
-**Authmethod** | Pointer to **string** |  | [optional] 
+**Authmethod** | **string** |  | 
 
 ## Methods
 
 ### NewISCSITargetGroupsInner
 
-`func NewISCSITargetGroupsInner() *ISCSITargetGroupsInner`
+`func NewISCSITargetGroupsInner(portal int32, authmethod string, ) *ISCSITargetGroupsInner`
 
 NewISCSITargetGroupsInner instantiates a new ISCSITargetGroupsInner object
 This constructor will assign default values to properties that have it defined,
@@ -47,11 +47,6 @@ and a boolean to check if the value has been set.
 
 SetPortal sets Portal field to given value.
 
-### HasPortal
-
-`func (o *ISCSITargetGroupsInner) HasPortal() bool`
-
-HasPortal returns a boolean if a field has been set.
 
 ### GetInitiator
 
@@ -122,11 +117,6 @@ and a boolean to check if the value has been set.
 
 SetAuthmethod sets Authmethod field to given value.
 
-### HasAuthmethod
-
-`func (o *ISCSITargetGroupsInner) HasAuthmethod() bool`
-
-HasAuthmethod returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

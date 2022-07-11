@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int32** |  | [optional] 
-**Name** | Pointer to **string** |  | [optional] 
-**Alias** | Pointer to **NullableString** |  | [optional] 
-**Mode** | Pointer to **string** |  | [optional] 
-**Groups** | Pointer to [**[]ISCSITargetGroupsInner**](ISCSITargetGroupsInner.md) |  | [optional] 
+**Id** | **int32** |  | 
+**Name** | **string** |  | 
+**Alias** | **NullableString** |  | 
+**Mode** | **string** |  | 
+**Groups** | [**[]ISCSITargetGroupsInner**](ISCSITargetGroupsInner.md) |  | 
 
 ## Methods
 
 ### NewISCSITarget
 
-`func NewISCSITarget() *ISCSITarget`
+`func NewISCSITarget(id int32, name string, alias NullableString, mode string, groups []ISCSITargetGroupsInner, ) *ISCSITarget`
 
 NewISCSITarget instantiates a new ISCSITarget object
 This constructor will assign default values to properties that have it defined,
@@ -48,11 +48,6 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
-### HasId
-
-`func (o *ISCSITarget) HasId() bool`
-
-HasId returns a boolean if a field has been set.
 
 ### GetName
 
@@ -73,11 +68,6 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
-### HasName
-
-`func (o *ISCSITarget) HasName() bool`
-
-HasName returns a boolean if a field has been set.
 
 ### GetAlias
 
@@ -98,11 +88,6 @@ and a boolean to check if the value has been set.
 
 SetAlias sets Alias field to given value.
 
-### HasAlias
-
-`func (o *ISCSITarget) HasAlias() bool`
-
-HasAlias returns a boolean if a field has been set.
 
 ### SetAliasNil
 
@@ -133,11 +118,6 @@ and a boolean to check if the value has been set.
 
 SetMode sets Mode field to given value.
 
-### HasMode
-
-`func (o *ISCSITarget) HasMode() bool`
-
-HasMode returns a boolean if a field has been set.
 
 ### GetGroups
 
@@ -158,11 +138,6 @@ and a boolean to check if the value has been set.
 
 SetGroups sets Groups field to given value.
 
-### HasGroups
-
-`func (o *ISCSITarget) HasGroups() bool`
-
-HasGroups returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
