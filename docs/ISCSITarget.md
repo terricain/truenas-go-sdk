@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **float32** |  | [optional] 
+**Id** | Pointer to **int32** |  | [optional] 
 **Name** | Pointer to **string** |  | [optional] 
 **Alias** | Pointer to **NullableString** |  | [optional] 
 **Mode** | Pointer to **string** |  | [optional] 
@@ -31,20 +31,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *ISCSITarget) GetId() float32`
+`func (o *ISCSITarget) GetId() int32`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *ISCSITarget) GetIdOk() (*float32, bool)`
+`func (o *ISCSITarget) GetIdOk() (*int32, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *ISCSITarget) SetId(v float32)`
+`func (o *ISCSITarget) SetId(v int32)`
 
 SetId sets Id field to given value.
 

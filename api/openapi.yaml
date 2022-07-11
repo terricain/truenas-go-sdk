@@ -2344,10 +2344,10 @@ components:
           initiator: 1
           authmethod: authmethod
           portal: 6
-        id: 0.8008281904610115
+        id: 0
       properties:
         id:
-          type: number
+          type: integer
         name:
           type: string
         alias:
