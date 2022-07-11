@@ -1122,6 +1122,114 @@ paths:
           description: No authorization for this endpoint
       tags:
       - iscsi.targetextent
+  /iscsi/global:
+    get:
+      operationId: getISCSIGlobalConfiguration
+      parameters: []
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ISCSIGlobalConfiguration'
+          description: The iSCSI Global configuration
+        "401":
+          description: No authorization for this endpoint
+      tags:
+      - iscsi.global
+  /iscsi/portal:
+    get:
+      operationId: listISCSIPortal
+      parameters:
+      - explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: count
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - explode: true
+        in: query
+        name: sort
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListISCSIPortalResponse'
+          description: A list of iSCSI Target Extent mapping
+        "401":
+          description: No authorization for this endpoint
+      tags:
+      - iscsi.portal
+  /iscsi/portal/id/{id}:
+    get:
+      operationId: getISCSIPortal
+      parameters:
+      - explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: count
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - explode: true
+        in: query
+        name: sort
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ISCSIPortal'
+          description: The iSCSI Target Extent mapping
+        "401":
+          description: No authorization for this endpoint
+      tags:
+      - iscsi.portal
   /network/configuration:
     get:
       operationId: getNetworkConfiguration
@@ -2299,6 +2407,10 @@ components:
       items:
         $ref: '#/components/schemas/ISCSITargetExtent'
       type: array
+    ListISCSIPortalResponse:
+      items:
+        $ref: '#/components/schemas/ISCSIPortal'
+      type: array
     ISCSIInitiator:
       additionalProperties: false
       example:
@@ -2461,6 +2573,78 @@ components:
       - extent
       - id
       - target
+      type: object
+    ISCSIGlobalConfiguration:
+      additionalProperties: false
+      example:
+        pool_avail_threshold: 6
+        basename: basename
+        isns_servers:
+        - isns_servers
+        - isns_servers
+        alua: true
+        id: 0
+      properties:
+        id:
+          type: integer
+        basename:
+          type: string
+        isns_servers:
+          items:
+            type: string
+          type: array
+        pool_avail_threshold:
+          nullable: true
+          type: integer
+        alua:
+          type: boolean
+      required:
+      - alua
+      - basename
+      - id
+      - isns_servers
+      - pool_avail_threshold
+      type: object
+    ISCSIPortal:
+      additionalProperties: false
+      example:
+        comment: comment
+        id: 0
+        tag: 6
+        discovery_authgroup: 1
+        discovery_authmethod: NONE
+        listen:
+        - port: 5
+          ip: ip
+        - port: 5
+          ip: ip
+      properties:
+        id:
+          type: integer
+        tag:
+          type: integer
+        comment:
+          type: string
+        discovery_authmethod:
+          enum:
+          - NONE
+          - CHAP
+          - CHAP_MUTUAL
+          type: string
+        discovery_authgroup:
+          nullable: true
+          type: integer
+        listen:
+          items:
+            $ref: '#/components/schemas/ISCSIPortal_listen_inner'
+          type: array
+      required:
+      - comment
+      - discovery_authgroup
+      - discovery_authmethod
+      - id
+      - listen
+      - tag
       type: object
     CreateISCSIInitiatorParams:
       additionalProperties: false
@@ -3658,6 +3842,20 @@ components:
       required:
       - authmethod
       - portal
+      type: object
+    ISCSIPortal_listen_inner:
+      additionalProperties: false
+      example:
+        port: 5
+        ip: ip
+      properties:
+        ip:
+          type: string
+        port:
+          type: integer
+      required:
+      - ip
+      - port
       type: object
     CreateISCSITargetParams_groups_inner:
       additionalProperties: false

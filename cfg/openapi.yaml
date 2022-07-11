@@ -1020,6 +1020,123 @@ paths:
           schema:
             type: integer
 
+  /iscsi/global:
+    get:
+      tags:
+        - iscsi.global
+      operationId: getISCSIGlobalConfiguration
+      responses:
+        '200':
+          description: 'The iSCSI Global configuration'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ISCSIGlobalConfiguration'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      parameters: [ ]
+
+  /iscsi/portal:
+    get:
+      tags:
+        - iscsi.portal
+      operationId: listISCSIPortal
+      responses:
+        '200':
+          description: 'A list of iSCSI Target Extent mapping'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListISCSIPortalResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      parameters:
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: integer
+        - name: count
+          in: query
+          required: false
+          schema:
+            type: boolean
+        - name: sort
+          in: query
+          required: false
+          schema:
+            type: string
+  '/iscsi/portal/id/{id}':
+    get:
+      tags:
+        - iscsi.portal
+      operationId: getISCSIPortal
+      responses:
+        '200':
+          description: 'The iSCSI Target Extent mapping'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ISCSIPortal'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      parameters:
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: integer
+        - name: count
+          in: query
+          required: false
+          schema:
+            type: boolean
+        - name: sort
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   /network/configuration:
@@ -2104,6 +2221,10 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/ISCSITargetExtent'
+    ListISCSIPortalResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/ISCSIPortal'
 
     ISCSIInitiator:
       type: object
@@ -2235,7 +2356,68 @@ components:
         - target
         - extent
       additionalProperties: false
-
+    ISCSIGlobalConfiguration:
+      type: object
+      properties:
+        id:
+          type: integer
+        basename:
+          type: string
+        isns_servers:
+          type: array
+          items:
+            type: string
+        pool_avail_threshold:
+          type: integer
+          nullable: true
+        alua:
+          type: boolean
+      required:
+        - id
+        - basename
+        - isns_servers
+        - pool_avail_threshold
+        - alua
+      additionalProperties: false
+    ISCSIPortal:
+      type: object
+      properties:
+        id:
+          type: integer
+        tag:
+          type: integer
+        comment:
+          type: string
+        discovery_authmethod:
+          type: string
+          enum:
+            - NONE
+            - CHAP
+            - CHAP_MUTUAL
+        discovery_authgroup:
+          type: integer
+          nullable: true
+        listen:
+          type: array
+          items:
+            type: object
+            properties:
+              ip:
+                type: string
+              port:
+                type: integer
+            required:
+              - ip
+              - port
+            additionalProperties: false
+      required:
+        - id
+        - tag
+        - comment
+        - listen
+        - discovery_authgroup
+        - discovery_authmethod
+      additionalProperties: false
 
     CreateISCSIInitiatorParams:
       type: object

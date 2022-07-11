@@ -57,7 +57,11 @@ type APIClient struct {
 
 	IscsiExtentApi *IscsiExtentApiService
 
+	IscsiGlobalApi *IscsiGlobalApiService
+
 	IscsiInitiatorApi *IscsiInitiatorApiService
+
+	IscsiPortalApi *IscsiPortalApiService
 
 	IscsiTargetApi *IscsiTargetApiService
 
@@ -96,7 +100,9 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.DatasetApi = (*DatasetApiService)(&c.common)
 	c.GroupApi = (*GroupApiService)(&c.common)
 	c.IscsiExtentApi = (*IscsiExtentApiService)(&c.common)
+	c.IscsiGlobalApi = (*IscsiGlobalApiService)(&c.common)
 	c.IscsiInitiatorApi = (*IscsiInitiatorApiService)(&c.common)
+	c.IscsiPortalApi = (*IscsiPortalApiService)(&c.common)
 	c.IscsiTargetApi = (*IscsiTargetApiService)(&c.common)
 	c.IscsiTargetextentApi = (*IscsiTargetextentApiService)(&c.common)
 	c.NetworkApi = (*NetworkApiService)(&c.common)
