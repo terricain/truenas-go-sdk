@@ -96,10 +96,13 @@ Class | Method | HTTP request | Description
 *IscsiExtentApi* | [**DeleteISCSIExtent**](docs/IscsiExtentApi.md#deleteiscsiextent) | **Delete** /iscsi/extent/id/{id} | 
 *IscsiExtentApi* | [**GetISCSIExtent**](docs/IscsiExtentApi.md#getiscsiextent) | **Get** /iscsi/extent/id/{id} | 
 *IscsiExtentApi* | [**ListISCSIExtent**](docs/IscsiExtentApi.md#listiscsiextent) | **Get** /iscsi/extent | 
+*IscsiGlobalApi* | [**GetISCSIGlobalConfiguration**](docs/IscsiGlobalApi.md#getiscsiglobalconfiguration) | **Get** /iscsi/global | 
 *IscsiInitiatorApi* | [**CreateISCSIInitiator**](docs/IscsiInitiatorApi.md#createiscsiinitiator) | **Post** /iscsi/initiator | 
 *IscsiInitiatorApi* | [**DeleteISCSIInitiator**](docs/IscsiInitiatorApi.md#deleteiscsiinitiator) | **Delete** /iscsi/initiator/id/{id} | 
 *IscsiInitiatorApi* | [**GetISCSIInitiator**](docs/IscsiInitiatorApi.md#getiscsiinitiator) | **Get** /iscsi/initiator/id/{id} | 
 *IscsiInitiatorApi* | [**ListISCSIInitiator**](docs/IscsiInitiatorApi.md#listiscsiinitiator) | **Get** /iscsi/initiator | 
+*IscsiPortalApi* | [**GetISCSIPortal**](docs/IscsiPortalApi.md#getiscsiportal) | **Get** /iscsi/portal/id/{id} | 
+*IscsiPortalApi* | [**ListISCSIPortal**](docs/IscsiPortalApi.md#listiscsiportal) | **Get** /iscsi/portal | 
 *IscsiTargetApi* | [**CreateISCSITarget**](docs/IscsiTargetApi.md#createiscsitarget) | **Post** /iscsi/target | 
 *IscsiTargetApi* | [**DeleteISCSITarget**](docs/IscsiTargetApi.md#deleteiscsitarget) | **Delete** /iscsi/target/id/{id} | 
 *IscsiTargetApi* | [**GetISCSITarget**](docs/IscsiTargetApi.md#getiscsitarget) | **Get** /iscsi/target/id/{id} | 
@@ -155,7 +158,10 @@ Class | Method | HTTP request | Description
  - [DeleteUserParams](docs/DeleteUserParams.md)
  - [Group](docs/Group.md)
  - [ISCSIExtent](docs/ISCSIExtent.md)
+ - [ISCSIGlobalConfiguration](docs/ISCSIGlobalConfiguration.md)
  - [ISCSIInitiator](docs/ISCSIInitiator.md)
+ - [ISCSIPortal](docs/ISCSIPortal.md)
+ - [ISCSIPortalListenInner](docs/ISCSIPortalListenInner.md)
  - [ISCSITarget](docs/ISCSITarget.md)
  - [ISCSITargetExtent](docs/ISCSITargetExtent.md)
  - [ISCSITargetGroupsInner](docs/ISCSITargetGroupsInner.md)
