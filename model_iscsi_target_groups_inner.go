@@ -16,10 +16,10 @@ import (
 
 // ISCSITargetGroupsInner struct for ISCSITargetGroupsInner
 type ISCSITargetGroupsInner struct {
-	Portal *int32 `json:"portal,omitempty"`
+	Portal int32 `json:"portal"`
 	Initiator *int32 `json:"initiator,omitempty"`
 	Auth map[string]interface{} `json:"auth,omitempty"`
-	Authmethod *string `json:"authmethod,omitempty"`
+	Authmethod string `json:"authmethod"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -29,8 +29,10 @@ type _ISCSITargetGroupsInner ISCSITargetGroupsInner
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewISCSITargetGroupsInner() *ISCSITargetGroupsInner {
+func NewISCSITargetGroupsInner(portal int32, authmethod string) *ISCSITargetGroupsInner {
 	this := ISCSITargetGroupsInner{}
+	this.Portal = portal
+	this.Authmethod = authmethod
 	return &this
 }
 
@@ -42,36 +44,28 @@ func NewISCSITargetGroupsInnerWithDefaults() *ISCSITargetGroupsInner {
 	return &this
 }
 
-// GetPortal returns the Portal field value if set, zero value otherwise.
+// GetPortal returns the Portal field value
 func (o *ISCSITargetGroupsInner) GetPortal() int32 {
-	if o == nil || o.Portal == nil {
+	if o == nil {
 		var ret int32
 		return ret
 	}
-	return *o.Portal
+
+	return o.Portal
 }
 
-// GetPortalOk returns a tuple with the Portal field value if set, nil otherwise
+// GetPortalOk returns a tuple with the Portal field value
 // and a boolean to check if the value has been set.
 func (o *ISCSITargetGroupsInner) GetPortalOk() (*int32, bool) {
-	if o == nil || o.Portal == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Portal, true
+	return &o.Portal, true
 }
 
-// HasPortal returns a boolean if a field has been set.
-func (o *ISCSITargetGroupsInner) HasPortal() bool {
-	if o != nil && o.Portal != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetPortal gets a reference to the given int32 and assigns it to the Portal field.
+// SetPortal sets field value
 func (o *ISCSITargetGroupsInner) SetPortal(v int32) {
-	o.Portal = &v
+	o.Portal = v
 }
 
 // GetInitiator returns the Initiator field value if set, zero value otherwise.
@@ -138,41 +132,33 @@ func (o *ISCSITargetGroupsInner) SetAuth(v map[string]interface{}) {
 	o.Auth = v
 }
 
-// GetAuthmethod returns the Authmethod field value if set, zero value otherwise.
+// GetAuthmethod returns the Authmethod field value
 func (o *ISCSITargetGroupsInner) GetAuthmethod() string {
-	if o == nil || o.Authmethod == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Authmethod
+
+	return o.Authmethod
 }
 
-// GetAuthmethodOk returns a tuple with the Authmethod field value if set, nil otherwise
+// GetAuthmethodOk returns a tuple with the Authmethod field value
 // and a boolean to check if the value has been set.
 func (o *ISCSITargetGroupsInner) GetAuthmethodOk() (*string, bool) {
-	if o == nil || o.Authmethod == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Authmethod, true
+	return &o.Authmethod, true
 }
 
-// HasAuthmethod returns a boolean if a field has been set.
-func (o *ISCSITargetGroupsInner) HasAuthmethod() bool {
-	if o != nil && o.Authmethod != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetAuthmethod gets a reference to the given string and assigns it to the Authmethod field.
+// SetAuthmethod sets field value
 func (o *ISCSITargetGroupsInner) SetAuthmethod(v string) {
-	o.Authmethod = &v
+	o.Authmethod = v
 }
 
 func (o ISCSITargetGroupsInner) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Portal != nil {
+	if true {
 		toSerialize["portal"] = o.Portal
 	}
 	if o.Initiator != nil {
@@ -181,7 +167,7 @@ func (o ISCSITargetGroupsInner) MarshalJSON() ([]byte, error) {
 	if o.Auth != nil {
 		toSerialize["auth"] = o.Auth
 	}
-	if o.Authmethod != nil {
+	if true {
 		toSerialize["authmethod"] = o.Authmethod
 	}
 

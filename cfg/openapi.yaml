@@ -2155,6 +2155,15 @@ components:
                 type: object
               authmethod:
                 type: string
+            required:
+              - portal
+              - authmethod
+      required:
+        - id
+        - name
+        - alias
+        - mode
+        - groups
       additionalProperties: false
     ISCSIExtent:
       type: object

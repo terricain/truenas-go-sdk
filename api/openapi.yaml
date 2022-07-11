@@ -2363,6 +2363,12 @@ components:
           items:
             $ref: '#/components/schemas/ISCSITarget_groups_inner'
           type: array
+      required:
+      - alias
+      - groups
+      - id
+      - mode
+      - name
       type: object
     ISCSIExtent:
       additionalProperties: false
@@ -3649,6 +3655,9 @@ components:
           type: object
         authmethod:
           type: string
+      required:
+      - authmethod
+      - portal
       type: object
     CreateISCSITargetParams_groups_inner:
       additionalProperties: false
