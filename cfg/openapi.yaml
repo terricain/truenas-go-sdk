@@ -2029,11 +2029,15 @@ components:
       type: object
       required:
         - paths
+        - path
       properties:
         paths:
           type: array
           items:
             type: string
+        # path was introduced later in an api breaking change
+        path:
+          type: string
         comment:
           type: string
         networks:

@@ -21,6 +21,7 @@ var _ MappedNullable = &CreateShareNFSParams{}
 // CreateShareNFSParams struct for CreateShareNFSParams
 type CreateShareNFSParams struct {
 	Paths                []string `json:"paths"`
+	Path                 string   `json:"path"`
 	Comment              *string  `json:"comment,omitempty"`
 	Networks             []string `json:"networks,omitempty"`
 	Hosts                []string `json:"hosts,omitempty"`
@@ -42,9 +43,10 @@ type _CreateShareNFSParams CreateShareNFSParams
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateShareNFSParams(paths []string) *CreateShareNFSParams {
+func NewCreateShareNFSParams(paths []string, path string) *CreateShareNFSParams {
 	this := CreateShareNFSParams{}
 	this.Paths = paths
+	this.Path = path
 	return &this
 }
 
@@ -78,6 +80,30 @@ func (o *CreateShareNFSParams) GetPathsOk() ([]string, bool) {
 // SetPaths sets field value
 func (o *CreateShareNFSParams) SetPaths(v []string) {
 	o.Paths = v
+}
+
+// GetPath returns the Path field value
+func (o *CreateShareNFSParams) GetPath() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Path
+}
+
+// GetPathOk returns a tuple with the Path field value
+// and a boolean to check if the value has been set.
+func (o *CreateShareNFSParams) GetPathOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Path, true
+}
+
+// SetPath sets field value
+func (o *CreateShareNFSParams) SetPath(v string) {
+	o.Path = v
 }
 
 // GetComment returns the Comment field value if set, zero value otherwise.
@@ -475,6 +501,7 @@ func (o CreateShareNFSParams) MarshalJSON() ([]byte, error) {
 func (o CreateShareNFSParams) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["paths"] = o.Paths
+	toSerialize["path"] = o.Path
 	if !IsNil(o.Comment) {
 		toSerialize["comment"] = o.Comment
 	}
@@ -525,6 +552,7 @@ func (o *CreateShareNFSParams) UnmarshalJSON(bytes []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"paths",
+		"path",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -555,6 +583,7 @@ func (o *CreateShareNFSParams) UnmarshalJSON(bytes []byte) (err error) {
 
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		delete(additionalProperties, "paths")
+		delete(additionalProperties, "path")
 		delete(additionalProperties, "comment")
 		delete(additionalProperties, "networks")
 		delete(additionalProperties, "hosts")

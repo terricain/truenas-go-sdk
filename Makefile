@@ -8,6 +8,10 @@ GENERATOR_VERSION=7.1.0
 GENERATOR_DOWNLOAD_URL=https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/${GENERATOR_VERSION}/openapi-generator-cli-${GENERATOR_VERSION}.jar
 GENERATOR_SHA1=7d9b3a162b5b5fddf28a995d330131cfff886333
 
+# So regular `make` generates
+gen: pkg/truenas
+.PHONY: gen
+
 .cache/openapi-generator-cli-${GENERATOR_VERSION}.jar:
 	mkdir -p $(@D)
 	curl -o $@ ${GENERATOR_DOWNLOAD_URL}

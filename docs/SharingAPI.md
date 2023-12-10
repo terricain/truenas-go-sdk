@@ -38,7 +38,7 @@ import (
 )
 
 func main() {
-    createShareNFSParams := *openapiclient.NewCreateShareNFSParams([]string{"Paths_example"}) // CreateShareNFSParams |  (optional)
+    createShareNFSParams := *openapiclient.NewCreateShareNFSParams([]string{"Paths_example"}, "Path_example") // CreateShareNFSParams |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -607,7 +607,7 @@ import (
 
 func main() {
     id := int32(56) // int32 | 
-    createShareNFSParams := *openapiclient.NewCreateShareNFSParams([]string{"Paths_example"}) // CreateShareNFSParams |  (optional)
+    createShareNFSParams := *openapiclient.NewCreateShareNFSParams([]string{"Paths_example"}, "Path_example") // CreateShareNFSParams |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)

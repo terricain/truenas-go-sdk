@@ -2299,6 +2299,7 @@ components:
         maproot_user: maproot_user
         enabled: true
         alldirs: true
+        path: path
         mapall_user: mapall_user
         mapall_group: mapall_group
         security:
@@ -2315,6 +2316,8 @@ components:
           items:
             type: string
           type: array
+        path:
+          type: string
         comment:
           type: string
         networks:
@@ -2346,6 +2349,7 @@ components:
         enabled:
           type: boolean
       required:
+      - path
       - paths
       type: object
     CreateShareSMBParams:
