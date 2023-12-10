@@ -15,14 +15,13 @@ Install the following dependencies:
 
 ```shell
 go get github.com/stretchr/testify/assert
-go get golang.org/x/oauth2
 go get golang.org/x/net/context
 ```
 
 Put the package under your project folder and add the following in import:
 
 ```golang
-import truenas "github.com/dariusbakunas/truenas-go-sdk"
+import truenas "github.com/terrycain/truenas-go-sdk/pkg/truenas"
 ```
 
 To use a proxy, set the environment variable `HTTP_PROXY`:
@@ -37,7 +36,7 @@ Default configuration comes with `Servers` field that contains server objects as
 
 ### Select Server Configuration
 
-For using other server than the one defined on index 0 set context value `sw.ContextServerIndex` of type `int`.
+For using other server than the one defined on index 0 set context value `truenas.ContextServerIndex` of type `int`.
 
 ```golang
 ctx := context.WithValue(context.Background(), truenas.ContextServerIndex, 1)
@@ -45,7 +44,7 @@ ctx := context.WithValue(context.Background(), truenas.ContextServerIndex, 1)
 
 ### Templated Server URL
 
-Templated server URL is formatted using default variables from configuration or from context value `sw.ContextServerVariables` of type `map[string]string`.
+Templated server URL is formatted using default variables from configuration or from context value `truenas.ContextServerVariables` of type `map[string]string`.
 
 ```golang
 ctx := context.WithValue(context.Background(), truenas.ContextServerVariables, map[string]string{
@@ -59,9 +58,9 @@ Note, enum values are always validated and all unused variables are silently ign
 
 Each operation can use different server URL defined using `OperationServers` map in the `Configuration`.
 An operation is uniquely identified by `"{classname}Service.{nickname}"` string.
-Similar rules for overriding default operation server index and variables applies by using `sw.ContextOperationServerIndices` and `sw.ContextOperationServerVariables` context maps.
+Similar rules for overriding default operation server index and variables applies by using `truenas.ContextOperationServerIndices` and `truenas.ContextOperationServerVariables` context maps.
 
-```
+```golang
 ctx := context.WithValue(context.Background(), truenas.ContextOperationServerIndices, map[string]int{
 	"{classname}Service.{nickname}": 2,
 })
@@ -78,61 +77,61 @@ All URIs are relative to *http://localhost*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*CronjobApi* | [**CreateCronJob**](docs/CronjobApi.md#createcronjob) | **Post** /cronjob | 
-*CronjobApi* | [**DeleteCronJob**](docs/CronjobApi.md#deletecronjob) | **Delete** /cronjob/id/{id} | 
-*CronjobApi* | [**GetCronJob**](docs/CronjobApi.md#getcronjob) | **Get** /cronjob/id/{id} | 
-*CronjobApi* | [**UpdateCronJob**](docs/CronjobApi.md#updatecronjob) | **Put** /cronjob/id/{id} | 
-*DatasetApi* | [**CreateDataset**](docs/DatasetApi.md#createdataset) | **Post** /pool/dataset | 
-*DatasetApi* | [**DeleteDataset**](docs/DatasetApi.md#deletedataset) | **Delete** /pool/dataset/id/{id} | 
-*DatasetApi* | [**GetDataset**](docs/DatasetApi.md#getdataset) | **Get** /pool/dataset/id/{id} | 
-*DatasetApi* | [**ListDatasets**](docs/DatasetApi.md#listdatasets) | **Get** /pool/dataset | 
-*DatasetApi* | [**UpdateDataset**](docs/DatasetApi.md#updatedataset) | **Put** /pool/dataset/id/{id} | 
-*GroupApi* | [**CreateGroup**](docs/GroupApi.md#creategroup) | **Post** /group | 
-*GroupApi* | [**DeleteGroup**](docs/GroupApi.md#deletegroup) | **Delete** /group/id/{id} | 
-*GroupApi* | [**GetGroup**](docs/GroupApi.md#getgroup) | **Get** /group/id/{id} | 
-*GroupApi* | [**ListGroups**](docs/GroupApi.md#listgroups) | **Get** /group | 
-*GroupApi* | [**UpdateGroup**](docs/GroupApi.md#updategroup) | **Put** /group/id/{id} | 
-*IscsiExtentApi* | [**CreateISCSIExtent**](docs/IscsiExtentApi.md#createiscsiextent) | **Post** /iscsi/extent | 
-*IscsiExtentApi* | [**DeleteISCSIExtent**](docs/IscsiExtentApi.md#deleteiscsiextent) | **Delete** /iscsi/extent/id/{id} | 
-*IscsiExtentApi* | [**GetISCSIExtent**](docs/IscsiExtentApi.md#getiscsiextent) | **Get** /iscsi/extent/id/{id} | 
-*IscsiExtentApi* | [**ListISCSIExtent**](docs/IscsiExtentApi.md#listiscsiextent) | **Get** /iscsi/extent | 
-*IscsiGlobalApi* | [**GetISCSIGlobalConfiguration**](docs/IscsiGlobalApi.md#getiscsiglobalconfiguration) | **Get** /iscsi/global | 
-*IscsiInitiatorApi* | [**CreateISCSIInitiator**](docs/IscsiInitiatorApi.md#createiscsiinitiator) | **Post** /iscsi/initiator | 
-*IscsiInitiatorApi* | [**DeleteISCSIInitiator**](docs/IscsiInitiatorApi.md#deleteiscsiinitiator) | **Delete** /iscsi/initiator/id/{id} | 
-*IscsiInitiatorApi* | [**GetISCSIInitiator**](docs/IscsiInitiatorApi.md#getiscsiinitiator) | **Get** /iscsi/initiator/id/{id} | 
-*IscsiInitiatorApi* | [**ListISCSIInitiator**](docs/IscsiInitiatorApi.md#listiscsiinitiator) | **Get** /iscsi/initiator | 
-*IscsiPortalApi* | [**GetISCSIPortal**](docs/IscsiPortalApi.md#getiscsiportal) | **Get** /iscsi/portal/id/{id} | 
-*IscsiPortalApi* | [**ListISCSIPortal**](docs/IscsiPortalApi.md#listiscsiportal) | **Get** /iscsi/portal | 
-*IscsiTargetApi* | [**CreateISCSITarget**](docs/IscsiTargetApi.md#createiscsitarget) | **Post** /iscsi/target | 
-*IscsiTargetApi* | [**DeleteISCSITarget**](docs/IscsiTargetApi.md#deleteiscsitarget) | **Delete** /iscsi/target/id/{id} | 
-*IscsiTargetApi* | [**GetISCSITarget**](docs/IscsiTargetApi.md#getiscsitarget) | **Get** /iscsi/target/id/{id} | 
-*IscsiTargetApi* | [**ListISCSITarget**](docs/IscsiTargetApi.md#listiscsitarget) | **Get** /iscsi/target | 
-*IscsiTargetextentApi* | [**CreateISCSITargetExtent**](docs/IscsiTargetextentApi.md#createiscsitargetextent) | **Post** /iscsi/targetextent | 
-*IscsiTargetextentApi* | [**DeleteISCSITargetExtent**](docs/IscsiTargetextentApi.md#deleteiscsitargetextent) | **Delete** /iscsi/targetextent/id/{id} | 
-*IscsiTargetextentApi* | [**GetISCSITargetExtent**](docs/IscsiTargetextentApi.md#getiscsitargetextent) | **Get** /iscsi/targetextent/id/{id} | 
-*IscsiTargetextentApi* | [**ListISCSITargetExtent**](docs/IscsiTargetextentApi.md#listiscsitargetextent) | **Get** /iscsi/targetextent | 
-*NetworkApi* | [**GetNetworkConfiguration**](docs/NetworkApi.md#getnetworkconfiguration) | **Get** /network/configuration | 
-*NetworkApi* | [**GetNetworkSummary**](docs/NetworkApi.md#getnetworksummary) | **Get** /network/general/summary | 
-*PoolApi* | [**ListPools**](docs/PoolApi.md#listpools) | **Get** /pool | 
-*ServiceApi* | [**GetService**](docs/ServiceApi.md#getservice) | **Get** /service/id/{id} | 
-*SharingApi* | [**CreateShareNFS**](docs/SharingApi.md#createsharenfs) | **Post** /sharing/nfs | 
-*SharingApi* | [**CreateShareSMB**](docs/SharingApi.md#createsharesmb) | **Post** /sharing/smb | 
-*SharingApi* | [**GetShareNFS**](docs/SharingApi.md#getsharenfs) | **Get** /sharing/nfs/id/{id} | 
-*SharingApi* | [**GetShareSMB**](docs/SharingApi.md#getsharesmb) | **Get** /sharing/smb/id/{id} | 
-*SharingApi* | [**ListSharesNFS**](docs/SharingApi.md#listsharesnfs) | **Get** /sharing/nfs | 
-*SharingApi* | [**ListSharesSMB**](docs/SharingApi.md#listsharessmb) | **Get** /sharing/smb | 
-*SharingApi* | [**RemoveShareNFS**](docs/SharingApi.md#removesharenfs) | **Delete** /sharing/nfs/id/{id} | 
-*SharingApi* | [**RemoveShareSMB**](docs/SharingApi.md#removesharesmb) | **Delete** /sharing/smb/id/{id} | 
-*SharingApi* | [**UpdateShareNFS**](docs/SharingApi.md#updatesharenfs) | **Put** /sharing/nfs/id/{id} | 
-*SharingApi* | [**UpdateShareSMB**](docs/SharingApi.md#updatesharesmb) | **Put** /sharing/smb/id/{id} | 
-*UserApi* | [**CreateUser**](docs/UserApi.md#createuser) | **Post** /user | 
-*UserApi* | [**DeleteUser**](docs/UserApi.md#deleteuser) | **Delete** /user/id/{id} | 
-*UserApi* | [**GetUser**](docs/UserApi.md#getuser) | **Get** /user/id/{id} | 
-*UserApi* | [**GetUserShellChoices**](docs/UserApi.md#getusershellchoices) | **Post** /user/shell_choices | 
-*UserApi* | [**ListUsers**](docs/UserApi.md#listusers) | **Get** /user | 
-*UserApi* | [**UpdateUser**](docs/UserApi.md#updateuser) | **Put** /user/id/{id} | 
-*VmApi* | [**GetVM**](docs/VmApi.md#getvm) | **Get** /vm/id/{id} | 
-*VmApi* | [**ListVMS**](docs/VmApi.md#listvms) | **Get** /vm | 
+*CronjobAPI* | [**CreateCronJob**](docs/CronjobAPI.md#createcronjob) | **Post** /cronjob | 
+*CronjobAPI* | [**DeleteCronJob**](docs/CronjobAPI.md#deletecronjob) | **Delete** /cronjob/id/{id} | 
+*CronjobAPI* | [**GetCronJob**](docs/CronjobAPI.md#getcronjob) | **Get** /cronjob/id/{id} | 
+*CronjobAPI* | [**UpdateCronJob**](docs/CronjobAPI.md#updatecronjob) | **Put** /cronjob/id/{id} | 
+*DatasetAPI* | [**CreateDataset**](docs/DatasetAPI.md#createdataset) | **Post** /pool/dataset | 
+*DatasetAPI* | [**DeleteDataset**](docs/DatasetAPI.md#deletedataset) | **Delete** /pool/dataset/id/{id} | 
+*DatasetAPI* | [**GetDataset**](docs/DatasetAPI.md#getdataset) | **Get** /pool/dataset/id/{id} | 
+*DatasetAPI* | [**ListDatasets**](docs/DatasetAPI.md#listdatasets) | **Get** /pool/dataset | 
+*DatasetAPI* | [**UpdateDataset**](docs/DatasetAPI.md#updatedataset) | **Put** /pool/dataset/id/{id} | 
+*GroupAPI* | [**CreateGroup**](docs/GroupAPI.md#creategroup) | **Post** /group | 
+*GroupAPI* | [**DeleteGroup**](docs/GroupAPI.md#deletegroup) | **Delete** /group/id/{id} | 
+*GroupAPI* | [**GetGroup**](docs/GroupAPI.md#getgroup) | **Get** /group/id/{id} | 
+*GroupAPI* | [**ListGroups**](docs/GroupAPI.md#listgroups) | **Get** /group | 
+*GroupAPI* | [**UpdateGroup**](docs/GroupAPI.md#updategroup) | **Put** /group/id/{id} | 
+*IscsiExtentAPI* | [**CreateISCSIExtent**](docs/IscsiExtentAPI.md#createiscsiextent) | **Post** /iscsi/extent | 
+*IscsiExtentAPI* | [**DeleteISCSIExtent**](docs/IscsiExtentAPI.md#deleteiscsiextent) | **Delete** /iscsi/extent/id/{id} | 
+*IscsiExtentAPI* | [**GetISCSIExtent**](docs/IscsiExtentAPI.md#getiscsiextent) | **Get** /iscsi/extent/id/{id} | 
+*IscsiExtentAPI* | [**ListISCSIExtent**](docs/IscsiExtentAPI.md#listiscsiextent) | **Get** /iscsi/extent | 
+*IscsiGlobalAPI* | [**GetISCSIGlobalConfiguration**](docs/IscsiGlobalAPI.md#getiscsiglobalconfiguration) | **Get** /iscsi/global | 
+*IscsiInitiatorAPI* | [**CreateISCSIInitiator**](docs/IscsiInitiatorAPI.md#createiscsiinitiator) | **Post** /iscsi/initiator | 
+*IscsiInitiatorAPI* | [**DeleteISCSIInitiator**](docs/IscsiInitiatorAPI.md#deleteiscsiinitiator) | **Delete** /iscsi/initiator/id/{id} | 
+*IscsiInitiatorAPI* | [**GetISCSIInitiator**](docs/IscsiInitiatorAPI.md#getiscsiinitiator) | **Get** /iscsi/initiator/id/{id} | 
+*IscsiInitiatorAPI* | [**ListISCSIInitiator**](docs/IscsiInitiatorAPI.md#listiscsiinitiator) | **Get** /iscsi/initiator | 
+*IscsiPortalAPI* | [**GetISCSIPortal**](docs/IscsiPortalAPI.md#getiscsiportal) | **Get** /iscsi/portal/id/{id} | 
+*IscsiPortalAPI* | [**ListISCSIPortal**](docs/IscsiPortalAPI.md#listiscsiportal) | **Get** /iscsi/portal | 
+*IscsiTargetAPI* | [**CreateISCSITarget**](docs/IscsiTargetAPI.md#createiscsitarget) | **Post** /iscsi/target | 
+*IscsiTargetAPI* | [**DeleteISCSITarget**](docs/IscsiTargetAPI.md#deleteiscsitarget) | **Delete** /iscsi/target/id/{id} | 
+*IscsiTargetAPI* | [**GetISCSITarget**](docs/IscsiTargetAPI.md#getiscsitarget) | **Get** /iscsi/target/id/{id} | 
+*IscsiTargetAPI* | [**ListISCSITarget**](docs/IscsiTargetAPI.md#listiscsitarget) | **Get** /iscsi/target | 
+*IscsiTargetextentAPI* | [**CreateISCSITargetExtent**](docs/IscsiTargetextentAPI.md#createiscsitargetextent) | **Post** /iscsi/targetextent | 
+*IscsiTargetextentAPI* | [**DeleteISCSITargetExtent**](docs/IscsiTargetextentAPI.md#deleteiscsitargetextent) | **Delete** /iscsi/targetextent/id/{id} | 
+*IscsiTargetextentAPI* | [**GetISCSITargetExtent**](docs/IscsiTargetextentAPI.md#getiscsitargetextent) | **Get** /iscsi/targetextent/id/{id} | 
+*IscsiTargetextentAPI* | [**ListISCSITargetExtent**](docs/IscsiTargetextentAPI.md#listiscsitargetextent) | **Get** /iscsi/targetextent | 
+*NetworkAPI* | [**GetNetworkConfiguration**](docs/NetworkAPI.md#getnetworkconfiguration) | **Get** /network/configuration | 
+*NetworkAPI* | [**GetNetworkSummary**](docs/NetworkAPI.md#getnetworksummary) | **Get** /network/general/summary | 
+*PoolAPI* | [**ListPools**](docs/PoolAPI.md#listpools) | **Get** /pool | 
+*ServiceAPI* | [**GetService**](docs/ServiceAPI.md#getservice) | **Get** /service/id/{id} | 
+*SharingAPI* | [**CreateShareNFS**](docs/SharingAPI.md#createsharenfs) | **Post** /sharing/nfs | 
+*SharingAPI* | [**CreateShareSMB**](docs/SharingAPI.md#createsharesmb) | **Post** /sharing/smb | 
+*SharingAPI* | [**GetShareNFS**](docs/SharingAPI.md#getsharenfs) | **Get** /sharing/nfs/id/{id} | 
+*SharingAPI* | [**GetShareSMB**](docs/SharingAPI.md#getsharesmb) | **Get** /sharing/smb/id/{id} | 
+*SharingAPI* | [**ListSharesNFS**](docs/SharingAPI.md#listsharesnfs) | **Get** /sharing/nfs | 
+*SharingAPI* | [**ListSharesSMB**](docs/SharingAPI.md#listsharessmb) | **Get** /sharing/smb | 
+*SharingAPI* | [**RemoveShareNFS**](docs/SharingAPI.md#removesharenfs) | **Delete** /sharing/nfs/id/{id} | 
+*SharingAPI* | [**RemoveShareSMB**](docs/SharingAPI.md#removesharesmb) | **Delete** /sharing/smb/id/{id} | 
+*SharingAPI* | [**UpdateShareNFS**](docs/SharingAPI.md#updatesharenfs) | **Put** /sharing/nfs/id/{id} | 
+*SharingAPI* | [**UpdateShareSMB**](docs/SharingAPI.md#updatesharesmb) | **Put** /sharing/smb/id/{id} | 
+*UserAPI* | [**CreateUser**](docs/UserAPI.md#createuser) | **Post** /user | 
+*UserAPI* | [**DeleteUser**](docs/UserAPI.md#deleteuser) | **Delete** /user/id/{id} | 
+*UserAPI* | [**GetUser**](docs/UserAPI.md#getuser) | **Get** /user/id/{id} | 
+*UserAPI* | [**GetUserShellChoices**](docs/UserAPI.md#getusershellchoices) | **Post** /user/shell_choices | 
+*UserAPI* | [**ListUsers**](docs/UserAPI.md#listusers) | **Get** /user | 
+*UserAPI* | [**UpdateUser**](docs/UserAPI.md#updateuser) | **Put** /user/id/{id} | 
+*VmAPI* | [**GetVM**](docs/VmAPI.md#getvm) | **Get** /vm/id/{id} | 
+*VmAPI* | [**ListVMS**](docs/VmAPI.md#listvms) | **Get** /vm | 
 
 
 ## Documentation For Models
@@ -185,7 +184,7 @@ Class | Method | HTTP request | Description
 ## Documentation For Authorization
 
 
-
+Authentication schemes defined for the API:
 ### bearerAuth
 
 - **Type**: HTTP Bearer token authentication
@@ -193,7 +192,7 @@ Class | Method | HTTP request | Description
 Example
 
 ```golang
-auth := context.WithValue(context.Background(), sw.ContextAccessToken, "BEARER_TOKEN_STRING")
+auth := context.WithValue(context.Background(), truenas.ContextAccessToken, "BEARER_TOKEN_STRING")
 r, err := client.Service.Operation(auth, args)
 ```
 

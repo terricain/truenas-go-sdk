@@ -1,0 +1,13 @@
+diff --git a/pkg/truenas/client.go b/pkg/truenas/client.go
+index cd0d519..743091f 100644
+--- a/pkg/truenas/client.go
++++ b/pkg/truenas/client.go
+@@ -35,7 +35,7 @@ import (
+ )
+ 
+ var (
+-	JsonCheck       = regexp.MustCompile(`(?i:(?:application|text)/(?:[^;]+\+)?json)`)
++	JsonCheck       = regexp.MustCompile(`(?i:(?:application|text)/(?:[^;]+\+)?(json|plain))`)
+ 	XmlCheck        = regexp.MustCompile(`(?i:(?:application|text)/(?:[^;]+\+)?xml)`)
+ 	queryParamSplit = regexp.MustCompile(`(^|&)([^&]+)`)
+ 	queryDescape    = strings.NewReplacer( "%5B", "[", "%5D", "]" )
