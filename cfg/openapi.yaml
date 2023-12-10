@@ -2993,6 +2993,8 @@ components:
           type: array
           items:
             type: string
+        path:
+          type: string
         networks:
           type: array
           items:

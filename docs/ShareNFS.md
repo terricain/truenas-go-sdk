@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **Enabled** | Pointer to **bool** |  | [optional] 
 **Locked** | Pointer to **bool** |  | [optional] 
 **Paths** | **[]string** |  | 
+**Path** | Pointer to **string** |  | [optional] 
 **Networks** | Pointer to **[]string** |  | [optional] 
 
 ## Methods
@@ -378,6 +379,31 @@ and a boolean to check if the value has been set.
 
 SetPaths sets Paths field to given value.
 
+
+### GetPath
+
+`func (o *ShareNFS) GetPath() string`
+
+GetPath returns the Path field if non-nil, zero value otherwise.
+
+### GetPathOk
+
+`func (o *ShareNFS) GetPathOk() (*string, bool)`
+
+GetPathOk returns a tuple with the Path field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPath
+
+`func (o *ShareNFS) SetPath(v string)`
+
+SetPath sets Path field to given value.
+
+### HasPath
+
+`func (o *ShareNFS) HasPath() bool`
+
+HasPath returns a boolean if a field has been set.
 
 ### GetNetworks
 
