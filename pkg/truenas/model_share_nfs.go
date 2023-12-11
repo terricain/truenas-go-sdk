@@ -33,7 +33,7 @@ type ShareNFS struct {
 	Security             []string `json:"security,omitempty"`
 	Enabled              *bool    `json:"enabled,omitempty"`
 	Locked               *bool    `json:"locked,omitempty"`
-	Paths                []string `json:"paths"`
+	Paths                []string `json:"paths,omitempty"`
 	Path                 *string  `json:"path,omitempty"`
 	Networks             []string `json:"networks,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -45,10 +45,9 @@ type _ShareNFS ShareNFS
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewShareNFS(id int32, paths []string) *ShareNFS {
+func NewShareNFS(id int32) *ShareNFS {
 	this := ShareNFS{}
 	this.Id = id
-	this.Paths = paths
 	return &this
 }
 
@@ -468,26 +467,34 @@ func (o *ShareNFS) SetLocked(v bool) {
 	o.Locked = &v
 }
 
-// GetPaths returns the Paths field value
+// GetPaths returns the Paths field value if set, zero value otherwise.
 func (o *ShareNFS) GetPaths() []string {
-	if o == nil {
+	if o == nil || IsNil(o.Paths) {
 		var ret []string
 		return ret
 	}
-
 	return o.Paths
 }
 
-// GetPathsOk returns a tuple with the Paths field value
+// GetPathsOk returns a tuple with the Paths field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ShareNFS) GetPathsOk() ([]string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Paths) {
 		return nil, false
 	}
 	return o.Paths, true
 }
 
-// SetPaths sets field value
+// HasPaths returns a boolean if a field has been set.
+func (o *ShareNFS) HasPaths() bool {
+	if o != nil && !IsNil(o.Paths) {
+		return true
+	}
+
+	return false
+}
+
+// SetPaths gets a reference to the given []string and assigns it to the Paths field.
 func (o *ShareNFS) SetPaths(v []string) {
 	o.Paths = v
 }
@@ -603,7 +610,9 @@ func (o ShareNFS) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Locked) {
 		toSerialize["locked"] = o.Locked
 	}
-	toSerialize["paths"] = o.Paths
+	if !IsNil(o.Paths) {
+		toSerialize["paths"] = o.Paths
+	}
 	if !IsNil(o.Path) {
 		toSerialize["path"] = o.Path
 	}
@@ -624,7 +633,6 @@ func (o *ShareNFS) UnmarshalJSON(bytes []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"id",
-		"paths",
 	}
 
 	allProperties := make(map[string]interface{})

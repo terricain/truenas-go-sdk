@@ -2027,9 +2027,9 @@ components:
           type: boolean
     CreateShareNFSParams:
       type: object
-      required:
-        - paths
-        - path
+#      required:  # needs to be one or the other, cant do that here
+#        - paths
+#        - path
       properties:
         paths:
           type: array
@@ -2961,7 +2961,8 @@ components:
       type: object
       required:
         - id
-        - paths
+        # - paths  needs to be one or the other
+        # - path
       properties:
         id:
           type: integer

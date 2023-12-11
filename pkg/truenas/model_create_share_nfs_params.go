@@ -12,7 +12,6 @@ package truenas
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the CreateShareNFSParams type satisfies the MappedNullable interface at compile time
@@ -20,8 +19,8 @@ var _ MappedNullable = &CreateShareNFSParams{}
 
 // CreateShareNFSParams struct for CreateShareNFSParams
 type CreateShareNFSParams struct {
-	Paths                []string `json:"paths"`
-	Path                 string   `json:"path"`
+	Paths                []string `json:"paths,omitempty"`
+	Path                 *string  `json:"path,omitempty"`
 	Comment              *string  `json:"comment,omitempty"`
 	Networks             []string `json:"networks,omitempty"`
 	Hosts                []string `json:"hosts,omitempty"`
@@ -43,10 +42,8 @@ type _CreateShareNFSParams CreateShareNFSParams
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateShareNFSParams(paths []string, path string) *CreateShareNFSParams {
+func NewCreateShareNFSParams() *CreateShareNFSParams {
 	this := CreateShareNFSParams{}
-	this.Paths = paths
-	this.Path = path
 	return &this
 }
 
@@ -58,52 +55,68 @@ func NewCreateShareNFSParamsWithDefaults() *CreateShareNFSParams {
 	return &this
 }
 
-// GetPaths returns the Paths field value
+// GetPaths returns the Paths field value if set, zero value otherwise.
 func (o *CreateShareNFSParams) GetPaths() []string {
-	if o == nil {
+	if o == nil || IsNil(o.Paths) {
 		var ret []string
 		return ret
 	}
-
 	return o.Paths
 }
 
-// GetPathsOk returns a tuple with the Paths field value
+// GetPathsOk returns a tuple with the Paths field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateShareNFSParams) GetPathsOk() ([]string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Paths) {
 		return nil, false
 	}
 	return o.Paths, true
 }
 
-// SetPaths sets field value
+// HasPaths returns a boolean if a field has been set.
+func (o *CreateShareNFSParams) HasPaths() bool {
+	if o != nil && !IsNil(o.Paths) {
+		return true
+	}
+
+	return false
+}
+
+// SetPaths gets a reference to the given []string and assigns it to the Paths field.
 func (o *CreateShareNFSParams) SetPaths(v []string) {
 	o.Paths = v
 }
 
-// GetPath returns the Path field value
+// GetPath returns the Path field value if set, zero value otherwise.
 func (o *CreateShareNFSParams) GetPath() string {
-	if o == nil {
+	if o == nil || IsNil(o.Path) {
 		var ret string
 		return ret
 	}
-
-	return o.Path
+	return *o.Path
 }
 
-// GetPathOk returns a tuple with the Path field value
+// GetPathOk returns a tuple with the Path field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateShareNFSParams) GetPathOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Path) {
 		return nil, false
 	}
-	return &o.Path, true
+	return o.Path, true
 }
 
-// SetPath sets field value
+// HasPath returns a boolean if a field has been set.
+func (o *CreateShareNFSParams) HasPath() bool {
+	if o != nil && !IsNil(o.Path) {
+		return true
+	}
+
+	return false
+}
+
+// SetPath gets a reference to the given string and assigns it to the Path field.
 func (o *CreateShareNFSParams) SetPath(v string) {
-	o.Path = v
+	o.Path = &v
 }
 
 // GetComment returns the Comment field value if set, zero value otherwise.
@@ -500,8 +513,12 @@ func (o CreateShareNFSParams) MarshalJSON() ([]byte, error) {
 
 func (o CreateShareNFSParams) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["paths"] = o.Paths
-	toSerialize["path"] = o.Path
+	if !IsNil(o.Paths) {
+		toSerialize["paths"] = o.Paths
+	}
+	if !IsNil(o.Path) {
+		toSerialize["path"] = o.Path
+	}
 	if !IsNil(o.Comment) {
 		toSerialize["comment"] = o.Comment
 	}
@@ -547,28 +564,6 @@ func (o CreateShareNFSParams) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *CreateShareNFSParams) UnmarshalJSON(bytes []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"paths",
-		"path",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(bytes, &allProperties)
-
-	if err != nil {
-		return err
-	}
-
-	for _, requiredProperty := range requiredProperties {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varCreateShareNFSParams := _CreateShareNFSParams{}
 
 	err = json.Unmarshal(bytes, &varCreateShareNFSParams)

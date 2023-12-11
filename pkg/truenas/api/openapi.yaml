@@ -2348,9 +2348,6 @@ components:
           type: array
         enabled:
           type: boolean
-      required:
-      - path
-      - paths
       type: object
     CreateShareSMBParams:
       example:
@@ -3576,7 +3573,6 @@ components:
           type: array
       required:
       - id
-      - paths
       type: object
     ShareSMB:
       example:

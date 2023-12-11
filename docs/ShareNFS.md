@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 **Security** | Pointer to **[]string** |  | [optional] 
 **Enabled** | Pointer to **bool** |  | [optional] 
 **Locked** | Pointer to **bool** |  | [optional] 
-**Paths** | **[]string** |  | 
+**Paths** | Pointer to **[]string** |  | [optional] 
 **Path** | Pointer to **string** |  | [optional] 
 **Networks** | Pointer to **[]string** |  | [optional] 
 
@@ -25,7 +25,7 @@ Name | Type | Description | Notes
 
 ### NewShareNFS
 
-`func NewShareNFS(id int32, paths []string, ) *ShareNFS`
+`func NewShareNFS(id int32, ) *ShareNFS`
 
 NewShareNFS instantiates a new ShareNFS object
 This constructor will assign default values to properties that have it defined,
@@ -379,6 +379,11 @@ and a boolean to check if the value has been set.
 
 SetPaths sets Paths field to given value.
 
+### HasPaths
+
+`func (o *ShareNFS) HasPaths() bool`
+
+HasPaths returns a boolean if a field has been set.
 
 ### GetPath
 

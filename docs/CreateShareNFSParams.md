@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Paths** | **[]string** |  | 
-**Path** | **string** |  | 
+**Paths** | Pointer to **[]string** |  | [optional] 
+**Path** | Pointer to **string** |  | [optional] 
 **Comment** | Pointer to **string** |  | [optional] 
 **Networks** | Pointer to **[]string** |  | [optional] 
 **Hosts** | Pointer to **[]string** |  | [optional] 
@@ -23,7 +23,7 @@ Name | Type | Description | Notes
 
 ### NewCreateShareNFSParams
 
-`func NewCreateShareNFSParams(paths []string, path string, ) *CreateShareNFSParams`
+`func NewCreateShareNFSParams() *CreateShareNFSParams`
 
 NewCreateShareNFSParams instantiates a new CreateShareNFSParams object
 This constructor will assign default values to properties that have it defined,
@@ -57,6 +57,11 @@ and a boolean to check if the value has been set.
 
 SetPaths sets Paths field to given value.
 
+### HasPaths
+
+`func (o *CreateShareNFSParams) HasPaths() bool`
+
+HasPaths returns a boolean if a field has been set.
 
 ### GetPath
 
@@ -77,6 +82,11 @@ and a boolean to check if the value has been set.
 
 SetPath sets Path field to given value.
 
+### HasPath
+
+`func (o *CreateShareNFSParams) HasPath() bool`
+
+HasPath returns a boolean if a field has been set.
 
 ### GetComment
 
