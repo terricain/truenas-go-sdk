@@ -1,4 +1,4 @@
-module github.com/terrycain/truenas-go-sdk
+module github.com/terricain/truenas-go-sdk
 
 go 1.21.4
 

@@ -28,10 +28,10 @@ clean:
 pkg/truenas: cfg/config.yaml cfg/openapi.yaml
 	rm -rf $@ ./docs
 	mkdir -p $@
-	java -jar .cache/openapi-generator-cli-${GENERATOR_VERSION}.jar generate --input-spec cfg/openapi.yaml --config cfg/config.yaml --http-user-agent 'TruenasScaleSDK' --output $@ --generator-name go --git-user-id terrycain --git-repo-id truenas-go-sdk
+	java -jar .cache/openapi-generator-cli-${GENERATOR_VERSION}.jar generate --input-spec cfg/openapi.yaml --config cfg/config.yaml --http-user-agent 'TruenasScaleSDK' --output $@ --generator-name go --git-user-id terricain --git-repo-id truenas-go-sdk
 	# Clean up stuff as am too lazy to find the right generate options
 	rm -f pkg/truenas/{git_push.sh,go.mod,go.sum,.travis.yml,.gitignore}
-	sed -i'' 's@"github.com/terrycain/truenas-go-sdk"@"github.com/terrycain/truenas-go-sdk/pkg/truenas"@g' pkg/truenas/test/*.go pkg/truenas/README.md pkg/truenas/docs/*.md
+	sed -i'' 's@"github.com/terricain/truenas-go-sdk"@"github.com/terricain/truenas-go-sdk/pkg/truenas"@g' pkg/truenas/test/*.go pkg/truenas/README.md pkg/truenas/docs/*.md
 	mv pkg/truenas/README.md .
 	mv pkg/truenas/docs .
 	# Apply some fixes

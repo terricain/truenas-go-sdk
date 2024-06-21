@@ -24,7 +24,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/terrycain/truenas-go-sdk/pkg/truenas"
+    openapiclient "github.com/terricain/truenas-go-sdk/pkg/truenas"
 )
 
 func main() {
@@ -100,7 +100,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/terrycain/truenas-go-sdk/pkg/truenas"
+    openapiclient "github.com/terricain/truenas-go-sdk/pkg/truenas"
 )
 
 func main() {

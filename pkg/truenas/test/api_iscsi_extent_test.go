@@ -15,7 +15,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	openapiclient "github.com/terrycain/truenas-go-sdk/pkg/truenas"
+	openapiclient "github.com/terricain/truenas-go-sdk/pkg/truenas"
 )
 
 func Test_truenas_IscsiExtentAPIService(t *testing.T) {

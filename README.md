@@ -21,7 +21,7 @@ go get golang.org/x/net/context
 Put the package under your project folder and add the following in import:
 
 ```golang
-import truenas "github.com/terrycain/truenas-go-sdk/pkg/truenas"
+import truenas "github.com/terricain/truenas-go-sdk/pkg/truenas"
 ```
 
 To use a proxy, set the environment variable `HTTP_PROXY`:
