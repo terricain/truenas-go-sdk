@@ -6,14 +6,14 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **int32** |  | 
 **Initiators** | **[]map[string]interface{}** |  | 
-**AuthNetwork** | **[]string** |  | 
-**Comment** | **string** |  | 
+**AuthNetwork** | Pointer to **[]string** |  | [optional] 
+**Comment** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
 ### NewISCSIInitiator
 
-`func NewISCSIInitiator(id int32, initiators []map[string]interface{}, authNetwork []string, comment string, ) *ISCSIInitiator`
+`func NewISCSIInitiator(id int32, initiators []map[string]interface{}, ) *ISCSIInitiator`
 
 NewISCSIInitiator instantiates a new ISCSIInitiator object
 This constructor will assign default values to properties that have it defined,
@@ -87,6 +87,11 @@ and a boolean to check if the value has been set.
 
 SetAuthNetwork sets AuthNetwork field to given value.
 
+### HasAuthNetwork
+
+`func (o *ISCSIInitiator) HasAuthNetwork() bool`
+
+HasAuthNetwork returns a boolean if a field has been set.
 
 ### GetComment
 
@@ -107,6 +112,11 @@ and a boolean to check if the value has been set.
 
 SetComment sets Comment field to given value.
 
+### HasComment
+
+`func (o *ISCSIInitiator) HasComment() bool`
+
+HasComment returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

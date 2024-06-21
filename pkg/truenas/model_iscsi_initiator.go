@@ -22,8 +22,8 @@ var _ MappedNullable = &ISCSIInitiator{}
 type ISCSIInitiator struct {
 	Id          int32                    `json:"id"`
 	Initiators  []map[string]interface{} `json:"initiators"`
-	AuthNetwork []string                 `json:"auth_network"`
-	Comment     string                   `json:"comment"`
+	AuthNetwork []string                 `json:"auth_network,omitempty"`
+	Comment     *string                  `json:"comment,omitempty"`
 }
 
 type _ISCSIInitiator ISCSIInitiator
@@ -32,12 +32,10 @@ type _ISCSIInitiator ISCSIInitiator
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewISCSIInitiator(id int32, initiators []map[string]interface{}, authNetwork []string, comment string) *ISCSIInitiator {
+func NewISCSIInitiator(id int32, initiators []map[string]interface{}) *ISCSIInitiator {
 	this := ISCSIInitiator{}
 	this.Id = id
 	this.Initiators = initiators
-	this.AuthNetwork = authNetwork
-	this.Comment = comment
 	return &this
 }
 
@@ -97,52 +95,68 @@ func (o *ISCSIInitiator) SetInitiators(v []map[string]interface{}) {
 	o.Initiators = v
 }
 
-// GetAuthNetwork returns the AuthNetwork field value
+// GetAuthNetwork returns the AuthNetwork field value if set, zero value otherwise.
 func (o *ISCSIInitiator) GetAuthNetwork() []string {
-	if o == nil {
+	if o == nil || IsNil(o.AuthNetwork) {
 		var ret []string
 		return ret
 	}
-
 	return o.AuthNetwork
 }
 
-// GetAuthNetworkOk returns a tuple with the AuthNetwork field value
+// GetAuthNetworkOk returns a tuple with the AuthNetwork field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ISCSIInitiator) GetAuthNetworkOk() ([]string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.AuthNetwork) {
 		return nil, false
 	}
 	return o.AuthNetwork, true
 }
 
-// SetAuthNetwork sets field value
+// HasAuthNetwork returns a boolean if a field has been set.
+func (o *ISCSIInitiator) HasAuthNetwork() bool {
+	if o != nil && !IsNil(o.AuthNetwork) {
+		return true
+	}
+
+	return false
+}
+
+// SetAuthNetwork gets a reference to the given []string and assigns it to the AuthNetwork field.
 func (o *ISCSIInitiator) SetAuthNetwork(v []string) {
 	o.AuthNetwork = v
 }
 
-// GetComment returns the Comment field value
+// GetComment returns the Comment field value if set, zero value otherwise.
 func (o *ISCSIInitiator) GetComment() string {
-	if o == nil {
+	if o == nil || IsNil(o.Comment) {
 		var ret string
 		return ret
 	}
-
-	return o.Comment
+	return *o.Comment
 }
 
-// GetCommentOk returns a tuple with the Comment field value
+// GetCommentOk returns a tuple with the Comment field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ISCSIInitiator) GetCommentOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Comment) {
 		return nil, false
 	}
-	return &o.Comment, true
+	return o.Comment, true
 }
 
-// SetComment sets field value
+// HasComment returns a boolean if a field has been set.
+func (o *ISCSIInitiator) HasComment() bool {
+	if o != nil && !IsNil(o.Comment) {
+		return true
+	}
+
+	return false
+}
+
+// SetComment gets a reference to the given string and assigns it to the Comment field.
 func (o *ISCSIInitiator) SetComment(v string) {
-	o.Comment = v
+	o.Comment = &v
 }
 
 func (o ISCSIInitiator) MarshalJSON() ([]byte, error) {
@@ -157,8 +171,12 @@ func (o ISCSIInitiator) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["id"] = o.Id
 	toSerialize["initiators"] = o.Initiators
-	toSerialize["auth_network"] = o.AuthNetwork
-	toSerialize["comment"] = o.Comment
+	if !IsNil(o.AuthNetwork) {
+		toSerialize["auth_network"] = o.AuthNetwork
+	}
+	if !IsNil(o.Comment) {
+		toSerialize["comment"] = o.Comment
+	}
 	return toSerialize, nil
 }
 
@@ -169,8 +187,6 @@ func (o *ISCSIInitiator) UnmarshalJSON(bytes []byte) (err error) {
 	requiredProperties := []string{
 		"id",
 		"initiators",
-		"auth_network",
-		"comment",
 	}
 
 	allProperties := make(map[string]interface{})

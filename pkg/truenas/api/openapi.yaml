@@ -2474,8 +2474,6 @@ components:
         comment:
           type: string
       required:
-      - auth_network
-      - comment
       - id
       - initiators
       type: object
